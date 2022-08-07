@@ -7,7 +7,7 @@ public class Notebook extends Produto {
 
     @Override
     public String toString() {
-        return ssd + ";" + configuracao + ";" + polegadas;
+        return super.toString() +";" + ssd + ";" + configuracao + ";" + polegadas;
     }
 
     public boolean isSsd() {

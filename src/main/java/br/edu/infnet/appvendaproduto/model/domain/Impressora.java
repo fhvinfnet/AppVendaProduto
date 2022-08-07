@@ -7,7 +7,7 @@ public class Impressora extends Produto {
 
     @Override
     public String toString() {
-        return wifi + ";" + sistemaDeImpressao + ";" + peso;
+        return super.toString() + ";" + wifi + ";" + sistemaDeImpressao + ";" + peso;
     }
 
     public boolean isWifi() {

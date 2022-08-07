@@ -32,6 +32,6 @@ public class Celular extends Produto {
 
     @Override
     public String toString() {
-        return cameraFrontal + ";" + dimensao + ";" + memoria;
+        return super.toString() + ";" + cameraFrontal + ";" + dimensao + ";" + memoria;
     }
 }
