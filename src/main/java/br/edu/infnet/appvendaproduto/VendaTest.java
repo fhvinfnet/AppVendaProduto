@@ -3,11 +3,13 @@ package br.edu.infnet.appvendaproduto;
 import br.edu.infnet.appvendaproduto.model.domain.Venda;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
 @Component
+@Order(1)
 public class VendaTest implements ApplicationRunner {
 
     @Override

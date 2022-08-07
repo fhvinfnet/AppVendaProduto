@@ -9,4 +9,28 @@ public class Notebook extends Produto {
     public String toString() {
         return ssd + ";" + configuracao + ";" + polegadas;
     }
+
+    public boolean isSsd() {
+        return ssd;
+    }
+
+    public void setSsd(boolean ssd) {
+        this.ssd = ssd;
+    }
+
+    public String getConfiguracao() {
+        return configuracao;
+    }
+
+    public void setConfiguracao(String configuracao) {
+        this.configuracao = configuracao;
+    }
+
+    public float getPolegadas() {
+        return polegadas;
+    }
+
+    public void setPolegadas(float polegadas) {
+        this.polegadas = polegadas;
+    }
 }
