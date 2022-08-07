@@ -2,9 +2,9 @@ package br.edu.infnet.appvendaproduto.model.domain;
 
 public class Produto {
 
-    public String nome;
-    public float valor;
-    public int codigo;
+    private String nome;
+    private float valor;
+    private int codigo;
 
     @Override
     public String toString() {

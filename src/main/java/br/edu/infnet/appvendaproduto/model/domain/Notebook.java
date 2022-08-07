@@ -1,9 +1,9 @@
 package br.edu.infnet.appvendaproduto.model.domain;
 
 public class Notebook extends Produto {
-    public boolean ssd;
-    public String configuracao;
-    public float polegadas;
+    private boolean ssd;
+    private String configuracao;
+    private float polegadas;
 
     @Override
     public String toString() {

@@ -1,10 +1,9 @@
 package br.edu.infnet.appvendaproduto.model.domain;
 
 public class Celular extends Produto {
-    public boolean cameraFrontal;
-    public String dimensao;
-    public float memoria;
-
+    private boolean cameraFrontal;
+    private String dimensao;
+    private float memoria;
 
     public boolean isCameraFrontal() {
         return cameraFrontal;
