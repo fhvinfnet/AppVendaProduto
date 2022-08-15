@@ -5,6 +5,13 @@ public class Celular extends Produto {
     private String dimensao;
     private float memoria;
 
+    @Override
+    public float calcularVenda() {
+        float valorCameraFrontal = cameraFrontal ? 15 : 10;
+
+        return getValor() + valorCameraFrontal;
+    }
+
     public boolean isCameraFrontal() {
         return cameraFrontal;
     }
@@ -31,6 +38,6 @@ public class Celular extends Produto {
 
     @Override
     public String toString() {
-        return super.toString() + ";" + cameraFrontal + ";" + dimensao + ";" + memoria;
+        return  cameraFrontal + ";" + dimensao + ";" + memoria + super.toString();
     }
 }

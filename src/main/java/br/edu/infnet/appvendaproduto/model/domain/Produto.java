@@ -6,9 +6,13 @@ public class Produto {
     private float valor;
     private int codigo;
 
+    public float calcularVenda() {
+        return valor * 2;
+    }
+
     @Override
     public String toString() {
-        return nome + ";" + valor + ";" + codigo;
+        return nome + ";" + valor + ";" + codigo + ";" + calcularVenda();
     }
 
     public String getNome() {

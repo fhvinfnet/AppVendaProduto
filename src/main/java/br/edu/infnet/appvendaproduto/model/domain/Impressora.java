@@ -6,8 +6,14 @@ public class Impressora extends Produto {
     private float peso;
 
     @Override
+    public float calcularVenda() {
+        float valorWifi = this.wifi ? 10 : 5;
+        return super.calcularVenda() + valorWifi;
+    }
+
+    @Override
     public String toString() {
-        return super.toString() + ";" + wifi + ";" + sistemaDeImpressao + ";" + peso;
+        return wifi + ";" + sistemaDeImpressao + ";" + peso + ";" + super.toString();
     }
 
     public boolean isWifi() {
