@@ -10,6 +10,12 @@ public class Notebook extends Produto {
         return ssd + ";" + configuracao + ";" + polegadas + ";" + super.toString();
     }
 
+    @Override
+    public void impressao() {
+        System.out.println("#notebook");
+        System.out.println(this);
+    }
+
     public boolean isSsd() {
         return ssd;
     }

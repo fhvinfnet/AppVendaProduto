@@ -16,6 +16,12 @@ public class Impressora extends Produto {
         return wifi + ";" + sistemaDeImpressao + ";" + peso + ";" + super.toString();
     }
 
+    @Override
+    public void impressao() {
+        System.out.println("#impressora");
+        System.out.println(this);
+    }
+
     public boolean isWifi() {
         return wifi;
     }

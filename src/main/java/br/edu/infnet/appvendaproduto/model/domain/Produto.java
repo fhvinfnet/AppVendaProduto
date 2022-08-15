@@ -1,6 +1,6 @@
 package br.edu.infnet.appvendaproduto.model.domain;
 
-public class Produto {
+public abstract class Produto {
 
     private String nome;
     private float valor;
@@ -9,6 +9,8 @@ public class Produto {
     public float calcularVenda() {
         return valor * 2;
     }
+
+    public abstract void impressao();
 
     @Override
     public String toString() {

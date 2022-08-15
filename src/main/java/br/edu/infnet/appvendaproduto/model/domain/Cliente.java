@@ -12,6 +12,11 @@ public class Cliente {
         this.nome = nome;
     }
 
+    public void impressao() {
+        System.out.println("#cliente");
+        System.out.println(this);
+    }
+
     @Override
     public String toString() {
         return nome + ";" + cpf + ";" + email;

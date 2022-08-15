@@ -12,6 +12,12 @@ public class Celular extends Produto {
         return getValor() + valorCameraFrontal;
     }
 
+    @Override
+    public void impressao() {
+        System.out.println("#celular");
+        System.out.println(this);
+    }
+
     public boolean isCameraFrontal() {
         return cameraFrontal;
     }

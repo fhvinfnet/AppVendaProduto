@@ -8,6 +8,11 @@ public class Venda {
     private LocalDateTime data;
     private boolean web;
 
+    public void impressao() {
+        System.out.println("#venda");
+        System.out.println(this);
+    }
+
     @Override
     public String toString() {
         return descricao + ";" + data + ";" + web;
