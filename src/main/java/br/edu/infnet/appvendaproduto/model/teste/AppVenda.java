@@ -1,20 +1,12 @@
 package br.edu.infnet.appvendaproduto.model.teste;
 
-import br.edu.infnet.appvendaproduto.model.domain.Produto;
+import br.edu.infnet.appvendaproduto.interfaces.IPrinter;
 
 public class AppVenda {
 
-    private Produto produto;
-    private String mensagem;
-
-    public AppVenda(Produto produto, String mensagem) {
-        this.produto = produto;
-        this.mensagem = mensagem;
-    }
-
-    public void relatorio() {
+    public static void relatorio(IPrinter printer, String mensagem) {
         System.out.println(mensagem);
-        produto.impressao();
+        printer.impressao();
     }
 
 }
