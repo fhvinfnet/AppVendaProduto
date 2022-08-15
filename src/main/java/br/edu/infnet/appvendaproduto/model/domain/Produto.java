@@ -1,16 +1,14 @@
 package br.edu.infnet.appvendaproduto.model.domain;
 
-public abstract class Produto {
+import br.edu.infnet.appvendaproduto.interfaces.IPrinter;
+
+public abstract class Produto implements IPrinter {
 
     private String nome;
     private float valor;
     private int codigo;
 
-    public float calcularVenda() {
-        return valor * 2;
-    }
-
-    public abstract void impressao();
+    public abstract float calcularVenda();
 
     @Override
     public String toString() {
@@ -40,4 +38,5 @@ public abstract class Produto {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
+
 }

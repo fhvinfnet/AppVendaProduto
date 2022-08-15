@@ -8,7 +8,7 @@ public class Impressora extends Produto {
     @Override
     public float calcularVenda() {
         float valorWifi = this.wifi ? 10 : 5;
-        return super.calcularVenda() + valorWifi;
+        return getValor() * 2 + valorWifi;
     }
 
     @Override

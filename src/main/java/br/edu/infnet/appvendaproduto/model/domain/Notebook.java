@@ -6,6 +6,11 @@ public class Notebook extends Produto {
     private float polegadas;
 
     @Override
+    public float calcularVenda() {
+        return getValor() * 2;
+    }
+
+    @Override
     public String toString() {
         return ssd + ";" + configuracao + ";" + polegadas + ";" + super.toString();
     }
