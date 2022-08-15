@@ -21,7 +21,7 @@ public class CelularTest implements ApplicationRunner {
         c1.setDimensao("4 x 3");
         c1.setMemoria(2.3F);
 
-        new AppVenda("celular samsung").relatorio();
+        new AppVenda(c1, "celular samsung").relatorio();
 
         Celular c2 = new Celular();
         c2.setCodigo(2);
@@ -31,7 +31,7 @@ public class CelularTest implements ApplicationRunner {
         c2.setDimensao("5 x 3");
         c2.setMemoria(3.3F);
 
-        new AppVenda("celular apple").relatorio();
+        new AppVenda(c2, "celular apple").relatorio();
 
         Celular c3 = new Celular();
         c3.setCodigo(3);
@@ -41,7 +41,7 @@ public class CelularTest implements ApplicationRunner {
         c3.setDimensao("4 x 3");
         c3.setMemoria(5.0F);
 
-        new AppVenda("celular lg").relatorio();
+        new AppVenda(c3, "celular lg").relatorio();
     }
 
 }
