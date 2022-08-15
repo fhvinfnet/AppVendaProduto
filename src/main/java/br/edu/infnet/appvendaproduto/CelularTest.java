@@ -1,6 +1,7 @@
 package br.edu.infnet.appvendaproduto;
 
 import br.edu.infnet.appvendaproduto.model.domain.Celular;
+import br.edu.infnet.appvendaproduto.model.teste.AppVenda;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -19,7 +20,8 @@ public class CelularTest implements ApplicationRunner {
         c1.setCameraFrontal(Boolean.FALSE);
         c1.setDimensao("4 x 3");
         c1.setMemoria(2.3F);
-        System.out.println(c1);
+
+        new AppVenda("celular samsung").relatorio();
 
         Celular c2 = new Celular();
         c2.setCodigo(2);
@@ -28,7 +30,8 @@ public class CelularTest implements ApplicationRunner {
         c2.setCameraFrontal(Boolean.TRUE);
         c2.setDimensao("5 x 3");
         c2.setMemoria(3.3F);
-        System.out.println(c2);
+
+        new AppVenda("celular apple").relatorio();
 
         Celular c3 = new Celular();
         c3.setCodigo(3);
@@ -37,7 +40,8 @@ public class CelularTest implements ApplicationRunner {
         c3.setCameraFrontal(Boolean.TRUE);
         c3.setDimensao("4 x 3");
         c3.setMemoria(5.0F);
-        System.out.println(c3);
+
+        new AppVenda("celular lg").relatorio();
     }
 
 }
