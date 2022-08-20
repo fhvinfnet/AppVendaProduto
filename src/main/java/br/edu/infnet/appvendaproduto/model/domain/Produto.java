@@ -2,6 +2,8 @@ package br.edu.infnet.appvendaproduto.model.domain;
 
 import br.edu.infnet.appvendaproduto.interfaces.IPrinter;
 
+import java.util.Objects;
+
 public abstract class Produto implements IPrinter {
 
     private String nome;
@@ -39,4 +41,16 @@ public abstract class Produto implements IPrinter {
         this.codigo = codigo;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        Produto produto = (Produto) o;
+        return codigo == produto.codigo;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(codigo);
+    }
 }

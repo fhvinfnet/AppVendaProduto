@@ -4,7 +4,9 @@ import br.edu.infnet.appvendaproduto.interfaces.IPrinter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Venda implements IPrinter {
 
@@ -12,7 +14,7 @@ public class Venda implements IPrinter {
     private LocalDateTime data;
     private boolean web;
     private Cliente cliente;
-    private List<Produto> produtos = new ArrayList<>();
+    private Set<Produto> produtos = new HashSet<>();
 
     public Venda(Cliente cliente) {
         this.cliente = cliente;
@@ -40,11 +42,11 @@ public class Venda implements IPrinter {
         this.web = web;
     }
 
-    public List<Produto> getProdutos() {
+    public Set<Produto> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(List<Produto> produtos) {
+    public void setProdutos(Set<Produto> produtos) {
         this.produtos = produtos;
     }
 
@@ -53,4 +55,6 @@ public class Venda implements IPrinter {
         System.out.println("#venda");
         System.out.println(this);
     }
+
+
 }

@@ -30,6 +30,14 @@ public class VendaTest implements ApplicationRunner {
         c1.setDimensao("4 x 3");
         c1.setMemoria(2.3F);
 
+        Celular c2 = new Celular();
+        c1.setCodigo(1);
+        c1.setNome("meu celular 1");
+        c1.setValor(100F);
+        c1.setCameraFrontal(Boolean.FALSE);
+        c1.setDimensao("4 x 3");
+        c1.setMemoria(2.3F);
+
         Impressora i1 = new Impressora();
         i1.setCodigo(1);
         i1.setNome("meu Impressora 1");
@@ -51,6 +59,7 @@ public class VendaTest implements ApplicationRunner {
         v1.setWeb(false);
         v1.getProdutos().add(c1);
         v1.getProdutos().add(i1);
+        v1.getProdutos().add(c2);
         AppImpressao.relatorio(v1, v1.getDescricao());
 
         Venda v2 = new Venda(cliente2);
