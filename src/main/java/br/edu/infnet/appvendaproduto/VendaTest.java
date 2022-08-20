@@ -25,19 +25,16 @@ public class VendaTest implements ApplicationRunner {
 
         Venda v1 = new Venda(c1);
         v1.setDescricao("Venda 1");
-        v1.setData(LocalDateTime.now());
         v1.setWeb(false);
         AppImpressao.relatorio(v1, v1.getDescricao());
 
         Venda v2 = new Venda(c2);
         v2.setDescricao("Venda 2");
-        v2.setData(LocalDateTime.now());
         v2.setWeb(true);
         AppImpressao.relatorio(v1, v1.getDescricao());
 
         Venda v3 = new Venda(c3);
         v3.setDescricao("Venda 3");
-        v3.setData(LocalDateTime.now());
         v3.setWeb(false);
         AppImpressao.relatorio(v1, v1.getDescricao());
     }

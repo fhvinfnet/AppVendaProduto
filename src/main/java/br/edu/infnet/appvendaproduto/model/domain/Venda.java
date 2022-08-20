@@ -13,6 +13,7 @@ public class Venda implements IPrinter {
 
     public Venda(Cliente cliente) {
         this.cliente = cliente;
+        this.data = LocalDateTime.now();
     }
 
     @Override
@@ -28,24 +29,12 @@ public class Venda implements IPrinter {
         this.descricao = descricao;
     }
 
-    public LocalDateTime getData() {
-        return data;
-    }
-
-    public void setData(LocalDateTime data) {
-        this.data = data;
-    }
-
     public boolean isWeb() {
         return web;
     }
 
     public void setWeb(boolean web) {
         this.web = web;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
     }
 
     @Override
