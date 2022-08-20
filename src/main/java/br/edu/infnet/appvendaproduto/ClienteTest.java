@@ -17,10 +17,10 @@ public class ClienteTest implements ApplicationRunner {
         Cliente c1 = new Cliente("12345678901", "joao", "joao@email.com");
         AppImpressao.relatorio(c1, "Cliente joao");
 
-        Cliente c2 = new Cliente("12345678902", "maria", "joao@email.com");
+        Cliente c2 = new Cliente("12345678902", "maria", "maria@email.com");
         AppImpressao.relatorio(c1, "Cliente maria");
 
-        Cliente c3 = new Cliente("12345678903", "jose", "joao@email.com");
+        Cliente c3 = new Cliente("12345678903", "jose", "jose@email.com");
         AppImpressao.relatorio(c1, "Cliente jose");
     }
 }

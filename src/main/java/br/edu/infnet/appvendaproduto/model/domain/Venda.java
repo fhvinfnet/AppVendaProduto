@@ -3,6 +3,8 @@ package br.edu.infnet.appvendaproduto.model.domain;
 import br.edu.infnet.appvendaproduto.interfaces.IPrinter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Venda implements IPrinter {
 
@@ -10,6 +12,7 @@ public class Venda implements IPrinter {
     private LocalDateTime data;
     private boolean web;
     private Cliente cliente;
+    private List<Produto> produtos = new ArrayList<>();
 
     public Venda(Cliente cliente) {
         this.cliente = cliente;
@@ -18,7 +21,7 @@ public class Venda implements IPrinter {
 
     @Override
     public String toString() {
-        return descricao + ";" + data + ";" + web + ";" + cliente;
+        return descricao + ";" + data + ";" + web + ";" + cliente + ";" + produtos.size();
     }
 
     public String getDescricao() {
@@ -35,6 +38,14 @@ public class Venda implements IPrinter {
 
     public void setWeb(boolean web) {
         this.web = web;
+    }
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
     }
 
     @Override
