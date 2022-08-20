@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -44,27 +45,25 @@
 	  <table class="table table-striped">
 	    <thead>
 	      <tr>
-	        <th>Atributo</th>
-	        <th>Tipo</th>
-	        <th>Descrição</th>
+	        <th>nome</th>
+	        <th>valor</th>
+	        <th>codigo</th>
+	        <th>ssd</th>
+	        <th>configuracao</th>
+	        <th>polegadas</th>
 	      </tr>
 	    </thead>
 	    <tbody>
-	      <tr>
-	        <td>ssd</td>
-	        <td>boolean</td>
-	        <td>Indicativo se tem ssd ou não</td>
-	      </tr>
-	      <tr>
-	        <td>configuracao</td>
-	        <td>String</td>
-	        <td>Descrição da configuracao do notebook</td>
-	      </tr>
-	      <tr>
-	        <td>polegadas</td>
-	        <td>float</td>
-	        <td>numero de polegadas</td>
-	      </tr>
+            <c:forEach var="c" items="${listagem}">
+              <tr>
+                <td>${c.nome}</td>
+                <td>${c.valor}</td>
+                <td>${c.codigo}</td>
+                <td>${c.ssd}</td>
+                <td>${c.configuracao}</td>
+                <td>${c.polegadas}</td>
+              </tr>
+            </c:forEach>
 	    </tbody>
 	  </table>
 

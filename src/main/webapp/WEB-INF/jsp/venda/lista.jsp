@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -44,27 +45,19 @@
 	  <table class="table table-striped">
 	    <thead>
 	      <tr>
-	        <th>Atributo</th>
-	        <th>Tipo</th>
-	        <th>Descrição</th>
+	        <th>descricao</th>
+	        <th>data</th>
+	        <th>web</th>
 	      </tr>
 	    </thead>
 	    <tbody>
-	      <tr>
-	        <td>descricao</td>
-	        <td>String</td>
-	        <td>Descrição da venda</td>
-	      </tr>
-	      <tr>
-	        <td>data</td>
-	        <td>LocalDateTime</td>
-	        <td>Data de realização da venda</td>
-	      </tr>
-	      <tr>
-	        <td>web</td>
-	        <td>boolean</td>
-	        <td>Indicativo para uma venda online ou presencial</td>
-	      </tr>
+            <c:forEach var="c" items="${listagem}">
+              <tr>
+                <td>${c.descricao}</td>
+                <td>${c.data}</td>
+                <td>${c.web}</td>
+              </tr>
+            </c:forEach>
 	    </tbody>
 	  </table>
 

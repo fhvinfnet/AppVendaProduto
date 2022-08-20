@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -44,27 +45,25 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Atributo</th>
-            <th>Tipo</th>
-            <th>Descrição</th>
+            <th>nome</th>
+            <th>valor</th>
+            <th>codigo</th>
+            <th>camera frontal</th>
+            <th>dimensão</th>
+            <th>memória</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>cameraFrontal</td>
-            <td>boolean</td>
-            <td>Indicativo se tem camera frontal ou não</td>
-          </tr>
-          <tr>
-            <td>dimensão</td>
-            <td>String</td>
-            <td>Decritivo das dimensões do aparelho</td>
-          </tr>
-          <tr>
-            <td>memória</td>
-            <td>float</td>
-            <td>Quantidade de memória</td>
-          </tr>
+            <c:forEach var="c" items="${listagem}">
+              <tr>
+                <td>${c.nome}</td>
+                <td>${c.valor}</td>
+                <td>${c.codigo}</td>
+                <td>${c.cameraFrontal}</td>
+                <td>${c.dimensao}</td>
+                <td>${c.memoria}</td>
+              </tr>
+            </c:forEach>
         </tbody>
       </table>
 
