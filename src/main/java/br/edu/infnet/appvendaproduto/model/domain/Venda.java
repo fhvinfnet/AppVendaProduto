@@ -11,6 +11,10 @@ public class Venda implements IPrinter {
     private boolean web;
     private Cliente cliente;
 
+    public Venda(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
     @Override
     public String toString() {
         return descricao + ";" + data + ";" + web + ";" + cliente;
@@ -42,10 +46,6 @@ public class Venda implements IPrinter {
 
     public Cliente getCliente() {
         return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 
     @Override
