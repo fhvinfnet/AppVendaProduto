@@ -9,10 +9,11 @@ public class Venda implements IPrinter {
     private String descricao;
     private LocalDateTime data;
     private boolean web;
+    private Cliente cliente;
 
     @Override
     public String toString() {
-        return descricao + ";" + data + ";" + web;
+        return descricao + ";" + data + ";" + web + ";" + cliente;
     }
 
     public String getDescricao() {
@@ -37,6 +38,14 @@ public class Venda implements IPrinter {
 
     public void setWeb(boolean web) {
         this.web = web;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     @Override

@@ -1,7 +1,7 @@
 package br.edu.infnet.appvendaproduto;
 
 import br.edu.infnet.appvendaproduto.model.domain.Impressora;
-import br.edu.infnet.appvendaproduto.model.teste.AppVenda;
+import br.edu.infnet.appvendaproduto.model.teste.AppImpressao;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -20,7 +20,7 @@ public class ImpressoraTest implements ApplicationRunner {
         i1.setPeso(5F);
         i1.setSistemaDeImpressao("tonner");
         i1.setWifi(Boolean.FALSE);
-        AppVenda.relatorio(i1, "impressora 1");
+        AppImpressao.relatorio(i1, "impressora 1");
 
         Impressora i2 = new Impressora();
         i2.setCodigo(2);
@@ -29,7 +29,7 @@ public class ImpressoraTest implements ApplicationRunner {
         i2.setPeso(6F);
         i2.setSistemaDeImpressao("tinta");
         i2.setWifi(Boolean.TRUE);
-        AppVenda.relatorio(i1, "impressora 2");
+        AppImpressao.relatorio(i1, "impressora 2");
 
         Impressora i3 = new Impressora();
         i3.setCodigo(3);
@@ -38,6 +38,6 @@ public class ImpressoraTest implements ApplicationRunner {
         i3.setPeso(4F);
         i3.setSistemaDeImpressao("tinta");
         i3.setWifi(Boolean.TRUE);
-        AppVenda.relatorio(i1, "impressora 3");
+        AppImpressao.relatorio(i1, "impressora 3");
     }
 }
