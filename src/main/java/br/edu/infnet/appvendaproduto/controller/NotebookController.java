@@ -7,22 +7,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class NotebookController {
 
-    private static List<Notebook> notebooks = new ArrayList<>();;
+    private static Map<Integer, Notebook> mapaNotebook = new HashMap<>();
+
+    private static Integer id = 1;
+
+    public static Collection<Notebook> obterLista() {
+        return mapaNotebook.values();
+    }
 
     public static void incluir(Notebook notebook) {
-        notebooks.add(notebook);
-        AppImpressao.relatorio(notebook, "inclusao do celular: " + notebook.getNome());
+        notebook.setId(id++);
+        mapaNotebook.put(notebook.getId(), notebook);
+
+        AppImpressao.relatorio(notebook, "inclusao do notebook: " + obterLista());
     }
 
     @GetMapping(value = "/notebook/lista")
     public String telaHome(Model model) {
-        model.addAttribute("listagem", notebooks);
+        model.addAttribute("listagem", obterLista());
 
         return "notebook/lista";
     }

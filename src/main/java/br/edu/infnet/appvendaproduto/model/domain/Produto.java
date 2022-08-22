@@ -6,6 +6,7 @@ import java.util.Objects;
 
 public abstract class Produto implements IPrinter {
 
+    private Integer id;
     private String nome;
     private float valor;
     private int codigo;
@@ -39,6 +40,14 @@ public abstract class Produto implements IPrinter {
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Override

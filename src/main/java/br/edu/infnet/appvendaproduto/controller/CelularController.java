@@ -6,22 +6,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class CelularController {
 
-    private static List<Celular> celulares = new ArrayList<>();;
+    private static Map<Integer, Celular> mapaCelular = new HashMap<>();
+
+    private static Integer id = 1;
+
+    public static Collection<Celular> obterLista() {
+        return mapaCelular.values();
+    }
 
     public static void incluir(Celular celular) {
-        celulares.add(celular);
-        AppImpressao.relatorio(celular, "inclusao do celular: " + celular.getNome());
+        celular.setId(id++);
+        mapaCelular.put(celular.getId(), celular);
+
+        AppImpressao.relatorio(celular, "inclusao do celular: " + obterLista());
     }
 
     @GetMapping(value = "/celular/lista")
     public String telaHome(Model model) {
-        model.addAttribute("listagem", celulares);
+        model.addAttribute("listagem", mapaCelular.values());
         return "celular/lista";
     }
 }

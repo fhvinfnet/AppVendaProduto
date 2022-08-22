@@ -1,28 +1,34 @@
 package br.edu.infnet.appvendaproduto.controller;
 
 import br.edu.infnet.appvendaproduto.model.domain.Celular;
-import br.edu.infnet.appvendaproduto.model.domain.Produto;
 import br.edu.infnet.appvendaproduto.model.teste.AppImpressao;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class ProdutoController {
 
-    private static List<Produto> produtos = new ArrayList<>();;
+    private static Map<Integer, Celular> mapaProduto = new HashMap<>();
 
-    public static void incluir(Produto produto) {
-        produtos.add(produto);
-        AppImpressao.relatorio(produto, "inclusao do produto: " + produto.getNome());
+    private static Integer id = 1;
+
+    public static Collection<Celular> obterLista() {
+        return mapaProduto.values();
+    }
+
+    public static void incluir(Celular celular) {
+        celular.setId(id++);
+        mapaProduto.put(celular.getId(), celular);
+
+        AppImpressao.relatorio(celular, "inclusao do produto: " + obterLista());
     }
 
     @GetMapping(value = "/produto/lista")
     public String telaHome(Model model) {
-        model.addAttribute("listagem", produtos);
+        model.addAttribute("listagem", obterLista());
 
         return "produto/lista";
     }
