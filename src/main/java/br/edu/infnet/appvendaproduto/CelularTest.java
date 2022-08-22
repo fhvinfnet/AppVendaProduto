@@ -1,5 +1,6 @@
 package br.edu.infnet.appvendaproduto;
 
+import br.edu.infnet.appvendaproduto.controller.CelularController;
 import br.edu.infnet.appvendaproduto.model.domain.Celular;
 import br.edu.infnet.appvendaproduto.model.teste.AppImpressao;
 import org.springframework.boot.ApplicationArguments;
@@ -21,8 +22,6 @@ public class CelularTest implements ApplicationRunner {
         c1.setDimensao("4 x 3");
         c1.setMemoria(2.3F);
 
-        AppImpressao.relatorio(c1, "celular samsung");
-
         Celular c2 = new Celular();
         c2.setCodigo(2);
         c2.setNome("meu celular 2");
@@ -30,8 +29,6 @@ public class CelularTest implements ApplicationRunner {
         c2.setCameraFrontal(Boolean.TRUE);
         c2.setDimensao("5 x 3");
         c2.setMemoria(3.3F);
-
-        AppImpressao.relatorio(c2, "celular apple");
 
         Celular c3 = new Celular();
         c3.setCodigo(3);
@@ -41,7 +38,9 @@ public class CelularTest implements ApplicationRunner {
         c3.setDimensao("4 x 3");
         c3.setMemoria(5.0F);
 
-        AppImpressao.relatorio(c3, "celular lg");
+        CelularController.incluir(c1);
+        CelularController.incluir(c2);
+        CelularController.incluir(c3);
     }
 
 }
