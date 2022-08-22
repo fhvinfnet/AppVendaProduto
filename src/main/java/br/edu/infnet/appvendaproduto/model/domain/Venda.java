@@ -10,6 +10,7 @@ import java.util.Set;
 
 public class Venda implements IPrinter {
 
+    private Integer id;
     private String descricao;
     private LocalDateTime data;
     private boolean web;
@@ -26,6 +27,14 @@ public class Venda implements IPrinter {
         return descricao + ";" + data + ";" + web + ";" + cliente + ";" + produtos.size();
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getDescricao() {
         return descricao;
     }
@@ -40,6 +49,10 @@ public class Venda implements IPrinter {
 
     public void setWeb(boolean web) {
         this.web = web;
+    }
+
+    public LocalDateTime getData() {
+        return data;
     }
 
     public Set<Produto> getProdutos() {

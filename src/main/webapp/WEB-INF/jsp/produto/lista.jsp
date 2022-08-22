@@ -49,6 +49,7 @@
 	        <th>nome</th>
 	        <th>valor</th>
 	        <th>codigo</th>
+	        <th></th>
 	      </tr>
 	    </thead>
 	    <tbody>
@@ -58,6 +59,7 @@
                 <td>${c.nome}</td>
                 <td>${c.valor}</td>
                 <td>${c.codigo}</td>
+                <td><a href="/produto/${c.id}/excluir">excluir</a></td>
               </tr>
             </c:forEach>
 	    </tbody>

@@ -45,17 +45,21 @@
 	  <table class="table table-striped">
 	    <thead>
 	      <tr>
+	        <th>ID</th>
 	        <th>descricao</th>
 	        <th>data</th>
 	        <th>web</th>
+	        <th></th>
 	      </tr>
 	    </thead>
 	    <tbody>
             <c:forEach var="c" items="${listagem}">
               <tr>
+                <td>${c.id}</td>
                 <td>${c.descricao}</td>
                 <td>${c.data}</td>
                 <td>${c.web}</td>
+                <td><a href="/venda/${c.id}/excluir">excluir</a></td>
               </tr>
             </c:forEach>
 	    </tbody>
