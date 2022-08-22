@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+import static br.edu.infnet.appvendaproduto.controller.VendaController.incluir;
+
 @Component
 @Order(1)
 public class VendaTest implements ApplicationRunner {
@@ -60,19 +62,20 @@ public class VendaTest implements ApplicationRunner {
         v1.getProdutos().add(c1);
         v1.getProdutos().add(i1);
         v1.getProdutos().add(c2);
-        AppImpressao.relatorio(v1, v1.getDescricao());
 
         Venda v2 = new Venda(cliente2);
         v2.setDescricao("Venda 2");
         v2.setWeb(true);
         v2.getProdutos().add(n1);
-        AppImpressao.relatorio(v2, v2.getDescricao());
 
         Venda v3 = new Venda(cliente3);
         v3.setDescricao("Venda 3");
         v3.setWeb(false);
         v3.getProdutos().add(n1);
         v3.getProdutos().add(c1);
-        AppImpressao.relatorio(v3, v3.getDescricao());
+
+        incluir(v1);
+        incluir(v2);
+        incluir(v3);
     }
 }

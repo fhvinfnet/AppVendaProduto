@@ -6,6 +6,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import static br.edu.infnet.appvendaproduto.controller.NotebookController.incluir;
+
 @Component
 public class NotebookTest implements ApplicationRunner {
 
@@ -21,9 +23,6 @@ public class NotebookTest implements ApplicationRunner {
         n1.setConfiguracao("coinfiguracao do meu notebook 1");
         n1.setPolegadas(13F);
         n1.setSsd(Boolean.FALSE);
-        AppImpressao.relatorio(n1, n1.getNome());
-
-        System.out.println(n1);
 
         Notebook n2 = new Notebook();
         n2.setCodigo(2);
@@ -32,7 +31,6 @@ public class NotebookTest implements ApplicationRunner {
         n2.setConfiguracao("configuracao do meu notebook 2");
         n2.setPolegadas(15F);
         n2.setSsd(Boolean.TRUE);
-        AppImpressao.relatorio(n1, n1.getNome());
 
         Notebook n3 = new Notebook();
         n3.setCodigo(3);
@@ -41,6 +39,9 @@ public class NotebookTest implements ApplicationRunner {
         n3.setConfiguracao("configuracao do meu notebook 3");
         n3.setPolegadas(14F);
         n3.setSsd(Boolean.TRUE);
-        AppImpressao.relatorio(n1, n1.getNome());
+
+        incluir(n1);
+        incluir(n2);
+        incluir(n3);
     }
 }
