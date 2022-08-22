@@ -6,6 +6,7 @@ import br.edu.infnet.appvendaproduto.model.teste.AppImpressao;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.*;
 
@@ -20,6 +21,10 @@ public class NotebookController {
         return mapaNotebook.values();
     }
 
+    public static void excluir(Integer id) {
+        mapaNotebook.remove(id);
+    }
+
     public static void incluir(Notebook notebook) {
         notebook.setId(id++);
         mapaNotebook.put(notebook.getId(), notebook);
@@ -32,5 +37,12 @@ public class NotebookController {
         model.addAttribute("listagem", obterLista());
 
         return "notebook/lista";
+    }
+
+    @GetMapping("/notebook/{id}/excluir")
+    public String exclusao(@PathVariable Integer id) {
+        excluir(id);
+
+        return "redirect:/notebook/lista";
     }
 }

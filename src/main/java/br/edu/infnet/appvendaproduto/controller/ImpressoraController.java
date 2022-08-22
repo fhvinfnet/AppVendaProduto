@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.*;
 
@@ -16,6 +17,10 @@ public class ImpressoraController {
     private static Map<Integer, Impressora> mapaImpressora = new HashMap<>();
 
     private static Integer id = 1;
+
+    public static void excluir(Integer id) {
+        mapaImpressora.remove(id);
+    }
 
     public static Collection<Impressora> obterLista() {
         return mapaImpressora.values();
@@ -33,5 +38,12 @@ public class ImpressoraController {
         model.addAttribute("listagem", obterLista());
 
         return "impressora/lista";
+    }
+
+    @GetMapping("/impressora/{id}/excluir")
+    public String exclusao(@PathVariable Integer id) {
+        excluir(id);
+
+        return "redirect:/impressora/lista";
     }
 }

@@ -52,6 +52,7 @@
 	        <th>wifi</th>
 	        <th>sistema de impressao</th>
 	        <th>peso</th>
+	        <th></th>
 	      </tr>
 	    </thead>
 	    <tbody>
@@ -64,6 +65,7 @@
                 <td>${c.wifi}</td>
                 <td>${c.sistemaDeImpressao}</td>
                 <td>${c.peso}</td>
+                <td><a href="/impressora/${c.id}/excluir">excluir</a></td>
               </tr>
             </c:forEach>
 	    </tbody>

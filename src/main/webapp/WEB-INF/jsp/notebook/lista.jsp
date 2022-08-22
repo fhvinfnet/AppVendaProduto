@@ -52,6 +52,7 @@
 	        <th>ssd</th>
 	        <th>configuracao</th>
 	        <th>polegadas</th>
+	        <th></th>
 	      </tr>
 	    </thead>
 	    <tbody>
@@ -64,6 +65,7 @@
                 <td>${c.ssd}</td>
                 <td>${c.configuracao}</td>
                 <td>${c.polegadas}</td>
+                <td><a href="/notebook/${c.id}/excluir">excluir</a></td>
               </tr>
             </c:forEach>
 	    </tbody>

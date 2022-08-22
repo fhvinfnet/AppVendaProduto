@@ -52,6 +52,7 @@
             <th>camera frontal</th>
             <th>dimensão</th>
             <th>memória</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -64,6 +65,7 @@
                 <td>${c.cameraFrontal}</td>
                 <td>${c.dimensao}</td>
                 <td>${c.memoria}</td>
+                <td><a href="/celular/${c.id}/excluir">excluir</a></td>
               </tr>
             </c:forEach>
         </tbody>

@@ -5,6 +5,7 @@ import br.edu.infnet.appvendaproduto.model.teste.AppImpressao;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.*;
 
@@ -19,6 +20,10 @@ public class CelularController {
         return mapaCelular.values();
     }
 
+    public static void excluir(Integer id) {
+        mapaCelular.remove(id);
+    }
+
     public static void incluir(Celular celular) {
         celular.setId(id++);
         mapaCelular.put(celular.getId(), celular);
@@ -30,5 +35,12 @@ public class CelularController {
     public String telaHome(Model model) {
         model.addAttribute("listagem", mapaCelular.values());
         return "celular/lista";
+    }
+
+    @GetMapping("/celular/{id}/excluir")
+    public String exclusao(@PathVariable Integer id) {
+        excluir(id);
+
+        return "redirect:/celular/lista";
     }
 }
