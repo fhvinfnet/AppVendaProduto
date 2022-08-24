@@ -9,7 +9,16 @@ public class Cliente implements IPrinter {
     private String cpf;
     private String email;
 
-    public Cliente(String cpf, String email, String nome) {
+    public Cliente(String cpf, String nome, String email) throws Exception {
+
+        if (cpf == null) {
+            throw new Exception("Não é possível aceitar CPF nulo");
+        }
+
+        if (cpf.isBlank()) {
+            throw new Exception("Não é possível aceitar CPF vazio");
+        }
+
         this.cpf = cpf;
         this.email = email;
         this.nome = nome;

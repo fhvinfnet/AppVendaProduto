@@ -18,7 +18,7 @@ public class VendaTest implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        System.out.println("####venda");
+        System.out.println("###### Venda");
 
         Cliente cliente1 = new Cliente("12345678901", "joao", "joao@email.com");
         Cliente cliente2 = new Cliente("12345678902", "maria", "maria@email.com");

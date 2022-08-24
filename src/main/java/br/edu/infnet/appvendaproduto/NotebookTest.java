@@ -14,7 +14,7 @@ public class NotebookTest implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        System.out.println("#notebook");
+        System.out.println("###### Notebook");
 
         Notebook n1 = new Notebook();
         n1.setCodigo(1);

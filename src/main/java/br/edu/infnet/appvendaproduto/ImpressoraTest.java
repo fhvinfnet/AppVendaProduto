@@ -13,7 +13,7 @@ public class ImpressoraTest implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        System.out.println("#impressoa");
+        System.out.println("###### Impressoa");
 
         Impressora i1 = new Impressora();
         i1.setCodigo(1);

@@ -15,7 +15,7 @@ public abstract class Produto implements IPrinter {
 
     @Override
     public String toString() {
-        return nome + ";" + valor + ";" + codigo + ";" + calcularVenda();
+        return nome + ";" + valor + ";" + codigo;
     }
 
     public String getNome() {

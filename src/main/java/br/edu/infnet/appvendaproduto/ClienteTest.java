@@ -2,6 +2,7 @@ package br.edu.infnet.appvendaproduto;
 
 import br.edu.infnet.appvendaproduto.model.domain.Cliente;
 import br.edu.infnet.appvendaproduto.model.teste.AppImpressao;
+import jdk.swing.interop.SwingInterOpUtils;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -12,16 +13,49 @@ import static br.edu.infnet.appvendaproduto.controller.ClienteController.incluir
 public class ClienteTest implements ApplicationRunner {
 
     @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public void run(ApplicationArguments args) {
 
-        System.out.println("clientes");
+        System.out.println("###### Clientes");
 
-        Cliente c1 = new Cliente("12345678901", "joao", "joao@email.com");
-        Cliente c2 = new Cliente("12345678902", "maria", "maria@email.com");
-        Cliente c3 = new Cliente("12345678903", "jose", "jose@email.com");
+        try {
+            Cliente c1 = null;
+            c1 = new Cliente("12345678901", "joao", "joao@email.com");
+            incluir(c1);
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+        }
 
-        incluir(c1);
-        incluir(c2);
-        incluir(c3);
+        try {
+            Cliente c2 = null;
+            c2 = new Cliente("12345678902", "maria", "maria@email.com");
+            incluir(c2);
+        } catch (Exception exception) {
+            System.out.println("[ERROR] " + exception.getMessage());
+        }
+
+        try {
+            Cliente c3 = null;
+            c3 = new Cliente("12345678903", "jose", "jose@email.com");
+            incluir(c3);
+        } catch (Exception exception) {
+            System.out.println("[ERROR] " + exception.getMessage());
+        }
+
+        try {
+            Cliente c4 = null;
+            c4 = new Cliente(null, "pedro", "pedro@email.com");
+            incluir(c4);
+        } catch (Exception exception) {
+            System.out.println("[ERROR] " + exception.getMessage());
+        }
+
+        try {
+            Cliente c5 = null;
+            c5 = new Cliente(" ", "joana", "joana@email.com");
+            incluir(c5);
+
+        } catch (Exception exception) {
+            System.out.println("[ERROR] " + exception.getMessage());
+        }
     }
 }

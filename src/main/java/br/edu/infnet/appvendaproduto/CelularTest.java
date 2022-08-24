@@ -12,7 +12,7 @@ public class CelularTest implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        System.out.println("#Celular");
+        System.out.println("###### Celular");
 
         Celular c1 = new Celular();
         c1.setCodigo(1);
@@ -21,6 +21,7 @@ public class CelularTest implements ApplicationRunner {
         c1.setCameraFrontal(Boolean.FALSE);
         c1.setDimensao("4 x 3");
         c1.setMemoria(2.3F);
+        System.out.println("calculo da venda: " + c1.calcularVenda());
 
         Celular c2 = new Celular();
         c2.setCodigo(2);
@@ -29,6 +30,7 @@ public class CelularTest implements ApplicationRunner {
         c2.setCameraFrontal(Boolean.TRUE);
         c2.setDimensao("5 x 3");
         c2.setMemoria(3.3F);
+        System.out.println("calculo da venda: " + c2.calcularVenda());
 
         Celular c3 = new Celular();
         c3.setCodigo(3);
@@ -37,6 +39,7 @@ public class CelularTest implements ApplicationRunner {
         c3.setCameraFrontal(Boolean.TRUE);
         c3.setDimensao("4 x 3");
         c3.setMemoria(5.0F);
+        System.out.println("calculo da venda: " + c3.calcularVenda());
 
         CelularController.incluir(c1);
         CelularController.incluir(c2);
