@@ -1,5 +1,6 @@
 package br.edu.infnet.appvendaproduto.model.domain;
 
+import br.edu.infnet.appvendaproduto.exceptions.MemoriaDeCelularInvalidaException;
 import br.edu.infnet.appvendaproduto.interfaces.IPrinter;
 
 import java.util.Objects;
@@ -11,7 +12,7 @@ public abstract class Produto implements IPrinter {
     private float valor;
     private int codigo;
 
-    public abstract float calcularVenda();
+    public abstract float calcularVenda() throws MemoriaDeCelularInvalidaException;
 
     @Override
     public String toString() {

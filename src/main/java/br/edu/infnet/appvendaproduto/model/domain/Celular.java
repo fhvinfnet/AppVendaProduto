@@ -1,15 +1,23 @@
 package br.edu.infnet.appvendaproduto.model.domain;
 
+import br.edu.infnet.appvendaproduto.exceptions.MemoriaDeCelularInvalidaException;
+
 public class Celular extends Produto {
     private boolean cameraFrontal;
     private String dimensao;
     private float memoria;
 
     @Override
-    public float calcularVenda() {
+    public float calcularVenda() throws MemoriaDeCelularInvalidaException {
         float valorCameraFrontal = cameraFrontal ? 15 : 10;
 
-        return getValor() + valorCameraFrontal;
+        if (memoria < 8) {
+            throw new MemoriaDeCelularInvalidaException("um celular nao pode ter menos que 8 de memoria");
+        }
+
+        float valorMemoria = memoria * 0.05f;
+
+        return getValor() + valorCameraFrontal + valorMemoria;
     }
 
     @Override
