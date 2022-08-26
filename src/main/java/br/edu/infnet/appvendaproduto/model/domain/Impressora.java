@@ -1,13 +1,20 @@
 package br.edu.infnet.appvendaproduto.model.domain;
 
+import br.edu.infnet.appvendaproduto.exceptions.SistemaDeImpressaoInvalido;
+
 public class Impressora extends Produto {
     private boolean wifi;
     private String sistemaDeImpressao;
     private float peso;
 
     @Override
-    public float calcularVenda() {
+    public float calcularVenda() throws SistemaDeImpressaoInvalido {
+        if (sistemaDeImpressao == null || sistemaDeImpressao.isBlank()) {
+            throw new SistemaDeImpressaoInvalido("o sistema de impressao deve ser informado");
+        }
+
         float valorWifi = this.wifi ? 10 : 5;
+
         return getValor() * 2 + valorWifi;
     }
 
