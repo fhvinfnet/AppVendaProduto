@@ -1,5 +1,6 @@
 package br.edu.infnet.appvendaproduto.model.domain;
 
+import br.edu.infnet.appvendaproduto.exceptions.CpfInvalidoException;
 import br.edu.infnet.appvendaproduto.interfaces.IPrinter;
 
 public class Cliente implements IPrinter {
@@ -9,14 +10,14 @@ public class Cliente implements IPrinter {
     private String cpf;
     private String email;
 
-    public Cliente(String cpf, String nome, String email) throws Exception {
+    public Cliente(String cpf, String nome, String email) throws CpfInvalidoException {
 
         if (cpf == null) {
-            throw new Exception("Não é possível aceitar CPF nulo");
+            throw new CpfInvalidoException("Não é possível aceitar CPF nulo");
         }
 
         if (cpf.isBlank()) {
-            throw new Exception("Não é possível aceitar CPF vazio");
+            throw new CpfInvalidoException("Não é possível aceitar CPF vazio");
         }
 
         this.cpf = cpf;

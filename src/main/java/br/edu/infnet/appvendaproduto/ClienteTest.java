@@ -1,5 +1,6 @@
 package br.edu.infnet.appvendaproduto;
 
+import br.edu.infnet.appvendaproduto.exceptions.CpfInvalidoException;
 import br.edu.infnet.appvendaproduto.model.domain.Cliente;
 import br.edu.infnet.appvendaproduto.model.teste.AppImpressao;
 import jdk.swing.interop.SwingInterOpUtils;
@@ -21,7 +22,7 @@ public class ClienteTest implements ApplicationRunner {
             Cliente c1 = null;
             c1 = new Cliente("12345678901", "joao", "joao@email.com");
             incluir(c1);
-        } catch (Exception exception) {
+        } catch (CpfInvalidoException exception) {
             System.out.println(exception.getMessage());
         }
 
@@ -29,7 +30,7 @@ public class ClienteTest implements ApplicationRunner {
             Cliente c2 = null;
             c2 = new Cliente("12345678902", "maria", "maria@email.com");
             incluir(c2);
-        } catch (Exception exception) {
+        } catch (CpfInvalidoException exception) {
             System.out.println("[ERROR] " + exception.getMessage());
         }
 
@@ -37,7 +38,7 @@ public class ClienteTest implements ApplicationRunner {
             Cliente c3 = null;
             c3 = new Cliente("12345678903", "jose", "jose@email.com");
             incluir(c3);
-        } catch (Exception exception) {
+        } catch (CpfInvalidoException exception) {
             System.out.println("[ERROR] " + exception.getMessage());
         }
 
@@ -45,8 +46,8 @@ public class ClienteTest implements ApplicationRunner {
             Cliente c4 = null;
             c4 = new Cliente(null, "pedro", "pedro@email.com");
             incluir(c4);
-        } catch (Exception exception) {
-            System.out.println("[ERROR] " + exception.getMessage());
+        } catch (CpfInvalidoException exception) {
+            System.out.println("[ERROR] - CLIENTE " + exception.getMessage());
         }
 
         try {
@@ -54,7 +55,7 @@ public class ClienteTest implements ApplicationRunner {
             c5 = new Cliente(" ", "joana", "joana@email.com");
             incluir(c5);
 
-        } catch (Exception exception) {
+        } catch (CpfInvalidoException exception) {
             System.out.println("[ERROR] " + exception.getMessage());
         }
     }

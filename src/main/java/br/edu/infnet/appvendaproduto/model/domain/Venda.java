@@ -1,5 +1,7 @@
 package br.edu.infnet.appvendaproduto.model.domain;
 
+import br.edu.infnet.appvendaproduto.exceptions.ClienteNuloException;
+import br.edu.infnet.appvendaproduto.exceptions.VendaSemProdutoException;
 import br.edu.infnet.appvendaproduto.interfaces.IPrinter;
 
 import java.time.LocalDateTime;
@@ -17,9 +19,19 @@ public class Venda implements IPrinter {
     private Cliente cliente;
     private Set<Produto> produtos = new HashSet<>();
 
-    public Venda(Cliente cliente) {
+    public Venda(Cliente cliente, Set<Produto> produtos) throws ClienteNuloException, VendaSemProdutoException {
+
+        if (cliente == null) {
+            throw new ClienteNuloException("cliente deve ser informado");
+        }
+
+        if (produtos == null || produtos.size() < 1) {
+            throw new VendaSemProdutoException("uma venda deve ter ao menos um produto");
+        }
+
         this.cliente = cliente;
         this.data = LocalDateTime.now();
+        this.produtos = produtos;
     }
 
     @Override

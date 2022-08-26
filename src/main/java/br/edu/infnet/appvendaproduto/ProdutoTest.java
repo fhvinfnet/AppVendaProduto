@@ -8,11 +8,6 @@ import org.springframework.boot.ApplicationRunner;
 public class ProdutoTest implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        Celular c1 = new Celular();
-        c1.setCodigo(1);
-        c1.setNome("meu celular 1");
-        c1.setValor(100F);
 
-        ProdutoController.incluir(c1);
     }
 }
