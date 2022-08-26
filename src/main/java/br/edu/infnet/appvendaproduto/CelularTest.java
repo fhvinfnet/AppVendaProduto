@@ -59,7 +59,7 @@ public class CelularTest implements ApplicationRunner {
 
         try {
             Celular c4 = new Celular();
-            c4.setCodigo(3);
+            c4.setCodigo(4);
             c4.setNome("meu celular 4");
             c4.setValor(200F);
             c4.setCameraFrontal(Boolean.TRUE);

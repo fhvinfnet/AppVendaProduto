@@ -5,9 +5,7 @@ import br.edu.infnet.appvendaproduto.exceptions.VendaSemProdutoException;
 import br.edu.infnet.appvendaproduto.interfaces.IPrinter;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class Venda implements IPrinter {
@@ -73,6 +71,10 @@ public class Venda implements IPrinter {
 
     public void setProdutos(Set<Produto> produtos) {
         this.produtos = produtos;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
     }
 
     @Override

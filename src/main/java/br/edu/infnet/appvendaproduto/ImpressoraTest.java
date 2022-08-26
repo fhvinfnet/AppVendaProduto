@@ -61,8 +61,8 @@ public class ImpressoraTest implements ApplicationRunner {
 
         try {
             Impressora i4 = new Impressora();
-            i4.setCodigo(3);
-            i4.setNome("meu Impressora 3");
+            i4.setCodigo(4);
+            i4.setNome("meu Impressora 4");
             i4.setValor(200F);
             i4.setPeso(4F);
 //            i4.setSistemaDeImpressao("tinta");

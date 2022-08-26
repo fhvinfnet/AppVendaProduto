@@ -44,7 +44,7 @@ public class VendaTest implements ApplicationRunner {
 
         Impressora i1 = new Impressora();
         i1.setCodigo(3);
-        i1.setNome("minha Impressora 1");
+        i1.setNome("minha Impressora 3");
         i1.setValor(100F);
         i1.setPeso(5F);
         i1.setSistemaDeImpressao("tonner");
@@ -52,9 +52,9 @@ public class VendaTest implements ApplicationRunner {
 
         Notebook n1 = new Notebook();
         n1.setCodigo(4);
-        n1.setNome("meu Notebook 1");
+        n1.setNome("meu Notebook 4");
         n1.setValor(100F);
-        n1.setConfiguracao("coinfiguracao do meu notebook 1");
+        n1.setConfiguracao("coinfiguracao do meu notebook 4");
         n1.setPolegadas(13F);
         n1.setSsd(Boolean.FALSE);
 

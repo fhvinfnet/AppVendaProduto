@@ -49,17 +49,21 @@
 	        <th>descricao</th>
 	        <th>data</th>
 	        <th>web</th>
+	        <th>clinte</th>
+	        <th>produto</th>
 	        <th></th>
 	      </tr>
 	    </thead>
 	    <tbody>
-            <c:forEach var="c" items="${listagem}">
+            <c:forEach var="v" items="${listagem}">
               <tr>
-                <td>${c.id}</td>
-                <td>${c.descricao}</td>
-                <td>${c.data}</td>
-                <td>${c.web}</td>
-                <td><a href="/venda/${c.id}/excluir">excluir</a></td>
+                <td>${v.id}</td>
+                <td>${v.descricao}</td>
+                <td>${v.data}</td>
+                <td>${v.web}</td>
+                <td>${v.cliente}</td>
+                <td>${v.produtos}</td>
+                <td><a href="/venda/${v.id}/excluir">excluir</a></td>
               </tr>
             </c:forEach>
 	    </tbody>

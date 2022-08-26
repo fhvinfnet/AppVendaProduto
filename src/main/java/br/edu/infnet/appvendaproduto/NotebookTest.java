@@ -61,10 +61,10 @@ public class NotebookTest implements ApplicationRunner {
 
         try {
             Notebook n4 = new Notebook();
-            n4.setCodigo(3);
-            n4.setNome("meu Notebook 3");
+            n4.setCodigo(4);
+            n4.setNome("meu Notebook 4");
             n4.setValor(200F);
-            n4.setConfiguracao("configuracao do meu notebook 3");
+            n4.setConfiguracao("configuracao do meu notebook 4");
             n4.setPolegadas(5F);
             n4.setSsd(Boolean.TRUE);
             System.out.println("calculo da venda: " + n4.calcularVenda());
