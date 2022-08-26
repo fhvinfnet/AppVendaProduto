@@ -1,13 +1,21 @@
 package br.edu.infnet.appvendaproduto.model.domain;
 
+import br.edu.infnet.appvendaproduto.exceptions.PolegadaNotebookInvalidaException;
+
 public class Notebook extends Produto {
     private boolean ssd;
     private String configuracao;
     private float polegadas;
 
     @Override
-    public float calcularVenda() {
-        return getValor() * 2;
+    public float calcularVenda() throws PolegadaNotebookInvalidaException {
+        if (polegadas < 10) {
+            throw new PolegadaNotebookInvalidaException("polegada de notebook nao pode ser menor que 10");
+        }
+
+        float valorPolegadas = polegadas > 13 ? 100 : 0;
+
+        return getValor() + valorPolegadas;
     }
 
     @Override
