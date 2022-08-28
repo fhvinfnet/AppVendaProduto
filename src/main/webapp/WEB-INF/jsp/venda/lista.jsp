@@ -61,8 +61,8 @@
                 <td>${v.descricao}</td>
                 <td>${v.data}</td>
                 <td>${v.web}</td>
-                <td>${v.cliente}</td>
-                <td>${v.produtos}</td>
+                <td>${v.cliente.nome}</td>
+                <td>${v.produtos.size()}</td>
                 <td><a href="/venda/${v.id}/excluir">excluir</a></td>
               </tr>
             </c:forEach>

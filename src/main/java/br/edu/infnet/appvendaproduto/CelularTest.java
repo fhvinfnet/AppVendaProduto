@@ -1,12 +1,21 @@
 package br.edu.infnet.appvendaproduto;
 
 import br.edu.infnet.appvendaproduto.controller.CelularController;
+import br.edu.infnet.appvendaproduto.exceptions.CpfInvalidoException;
 import br.edu.infnet.appvendaproduto.exceptions.MemoriaDeCelularInvalidaException;
 import br.edu.infnet.appvendaproduto.model.domain.Celular;
+import br.edu.infnet.appvendaproduto.model.domain.Cliente;
 import br.edu.infnet.appvendaproduto.model.teste.AppImpressao;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+import static br.edu.infnet.appvendaproduto.controller.ClienteController.incluir;
 
 @Component
 public class CelularTest implements ApplicationRunner {
@@ -16,59 +25,47 @@ public class CelularTest implements ApplicationRunner {
         System.out.println("###### Celular");
 
         try {
-            Celular c1 = new Celular();
-            c1.setCodigo(1);
-            c1.setNome("meu celular 1");
-            c1.setValor(100F);
-            c1.setCameraFrontal(Boolean.FALSE);
-            c1.setDimensao("4 x 3");
-            c1.setMemoria(8F);
-            System.out.println("calculo da venda: " + c1.calcularVenda());
-            CelularController.incluir(c1);
-        } catch (MemoriaDeCelularInvalidaException e) {
-            System.out.println("[ERROR - CELULAR] " + e.getMessage());
-        }
+            try {
+                String dir = "/Users/fernandovieira/dev/venda/";
+                String arq = "celular.txt";
 
-        try {
-            Celular c2 = new Celular();
-            c2.setCodigo(2);
-            c2.setNome("meu celular 2");
-            c2.setValor(150F);
-            c2.setCameraFrontal(Boolean.TRUE);
-            c2.setDimensao("5 x 3");
-            c2.setMemoria(16F);
-            System.out.println("calculo da venda: " + c2.calcularVenda());
-            CelularController.incluir(c2);
-        } catch (MemoriaDeCelularInvalidaException e) {
-            System.out.println("[ERROR - CELULAR] " + e.getMessage());
-        }
+                FileReader fileReader = new FileReader(dir + arq);
+                BufferedReader leitura = new BufferedReader(fileReader);
 
-        try {
-            Celular c3 = new Celular();
-            c3.setCodigo(3);
-            c3.setNome("meu celular 3");
-            c3.setValor(200F);
-            c3.setCameraFrontal(Boolean.TRUE);
-            c3.setDimensao("4 x 3");
-            c3.setMemoria(32F);
-            System.out.println("calculo da venda: " + c3.calcularVenda());
-            CelularController.incluir(c3);
-        } catch (MemoriaDeCelularInvalidaException e) {
-            System.out.println("[ERROR - CELULAR] " + e.getMessage());
-        }
+                String linha;
 
-        try {
-            Celular c4 = new Celular();
-            c4.setCodigo(4);
-            c4.setNome("meu celular 4");
-            c4.setValor(200F);
-            c4.setCameraFrontal(Boolean.TRUE);
-            c4.setDimensao("4 x 3");
-            c4.setMemoria(4F);
-            System.out.println("calculo da venda: " + c4.calcularVenda());
-            CelularController.incluir(c4);
-        } catch (MemoriaDeCelularInvalidaException e) {
-            System.out.println("[ERROR - CELULAR] " + e.getMessage());
+                while ((linha = leitura.readLine()) != null) {
+
+                    try {
+                        String[] campos = linha.split(";");
+
+                        Celular celular = new Celular();
+
+                        celular.setCodigo(Integer. valueOf(campos[0]));
+                        celular.setNome(campos[1]);
+                        celular.setValor(Float.valueOf(campos[2]));
+                        celular.setCameraFrontal(Boolean.valueOf(campos[3]));
+                        celular.setDimensao(campos[4]);
+                        celular.setMemoria(Float.valueOf(campos[5]));
+
+                        System.out.println("calculo da venda: " + celular.calcularVenda());
+
+                        CelularController.incluir(celular);
+
+                    } catch (MemoriaDeCelularInvalidaException e) {
+                        System.out.println("[ERROR - CELULAR] " + e.getMessage());
+                    }
+                }
+
+                leitura.close();
+                fileReader.close();
+            } catch (FileNotFoundException e) {
+                System.out.println("[ERRO] - arquivo nao existe");
+            } catch (IOException e) {
+                System.out.println("[ERRO] - problemna no fechamento do arquivo");
+            }
+        } finally {
+            System.out.println("terminou");
         }
     }
 

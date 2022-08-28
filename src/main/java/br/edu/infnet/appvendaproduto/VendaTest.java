@@ -10,6 +10,10 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
@@ -59,63 +63,42 @@ public class VendaTest implements ApplicationRunner {
         n1.setSsd(Boolean.FALSE);
 
         try {
-            Cliente cliente1 = new Cliente("12345678901", "joao", "joao@email.com");
+            try {
+                String dir = "/Users/fernandovieira/dev/venda/";
+                String arq = "venda.txt";
 
-            Venda v1 = new Venda(cliente1, new HashSet<>(Set.of(c1, c2, i1)));
-            v1.setDescricao("Venda 1");
-            v1.setWeb(false);
+                FileReader fileReader = new FileReader(dir + arq);
+                BufferedReader leitura = new BufferedReader(fileReader);
 
-            incluir(v1);
-        } catch (CpfInvalidoException | ClienteNuloException | VendaSemProdutoException exception) {
-            System.out.println("[ERROR] - VENDA " + exception.getMessage());
+                String linha;
+
+                while ((linha = leitura.readLine()) != null) {
+
+                    try {
+                        String[] campos = linha.split(";");
+
+                        Cliente cliente1 = new Cliente(campos[2], campos[3], campos[4]);
+
+                        Venda v1 = new Venda(cliente1, new HashSet<>(Set.of(c1, c2, i1)));
+                        v1.setDescricao(campos[0]);
+                        v1.setWeb(Boolean.valueOf(campos[1]));
+
+                        incluir(v1);
+                    } catch (CpfInvalidoException | ClienteNuloException | VendaSemProdutoException exception) {
+                        System.out.println("[ERROR] - VENDA " + exception.getMessage());
+                    }
+                }
+
+                leitura.close();
+                fileReader.close();
+            } catch (FileNotFoundException e) {
+                System.out.println("[ERRO] - arquivo nao existe");
+            } catch (IOException e) {
+                System.out.println("[ERRO] - problemna no fechamento do arquivo");
+            }
+        } finally {
+            System.out.println("terminou");
         }
 
-        try {
-            Cliente cliente2 = new Cliente("12345678902", "maria", "maria@email.com");
-
-            Venda v2 = new Venda(cliente2, new HashSet<>(Set.of(n1)));
-            v2.setDescricao("Venda 2");
-            v2.setWeb(true);
-
-            incluir(v2);
-        } catch (CpfInvalidoException | ClienteNuloException | VendaSemProdutoException exception) {
-            System.out.println("[ERROR] - VENDA " + exception.getMessage());
-        }
-
-        try {
-            Cliente cliente3 = new Cliente("12345678903", "jose", "jose@email.com");
-
-            Venda v3 = new Venda(cliente3, new HashSet<>(Set.of(n1, c1)));
-            v3.setDescricao("Venda 3");
-            v3.setWeb(false);
-
-            incluir(v3);
-        } catch (CpfInvalidoException | ClienteNuloException | VendaSemProdutoException exception) {
-            System.out.println("[ERROR] - VENDA " + exception.getMessage());
-        }
-
-        try {
-            Cliente cliente4 = new Cliente("12345678904", "joana", "joana@email.com");
-
-            Venda v3 = new Venda(null, new HashSet<>(Set.of(n1, c1)));
-            v3.setDescricao("Venda 4");
-            v3.setWeb(false);
-
-            incluir(v3);
-        } catch (CpfInvalidoException | ClienteNuloException | VendaSemProdutoException exception) {
-            System.out.println("[ERROR] - VENDA " + exception.getMessage());
-        }
-
-        try {
-            Cliente cliente5 = new Cliente("12345678905", "elena", "elena@email.com");
-
-            Venda v3 = new Venda(cliente5, null);
-            v3.setDescricao("Venda 5");
-            v3.setWeb(false);
-
-            incluir(v3);
-        } catch (CpfInvalidoException | ClienteNuloException | VendaSemProdutoException exception) {
-            System.out.println("[ERROR] - VENDA " + exception.getMessage());
-        }
     }
 }

@@ -1,11 +1,20 @@
 package br.edu.infnet.appvendaproduto;
 
+import br.edu.infnet.appvendaproduto.controller.CelularController;
+import br.edu.infnet.appvendaproduto.controller.ImpressoraController;
+import br.edu.infnet.appvendaproduto.exceptions.MemoriaDeCelularInvalidaException;
 import br.edu.infnet.appvendaproduto.exceptions.SistemaDeImpressaoInvalido;
+import br.edu.infnet.appvendaproduto.model.domain.Celular;
 import br.edu.infnet.appvendaproduto.model.domain.Impressora;
 import br.edu.infnet.appvendaproduto.model.teste.AppImpressao;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 import static br.edu.infnet.appvendaproduto.controller.ImpressoraController.incluir;
 
@@ -17,61 +26,48 @@ public class ImpressoraTest implements ApplicationRunner {
         System.out.println("###### Impressora");
 
         try {
-            Impressora i1 = new Impressora();
-            i1.setCodigo(1);
-            i1.setNome("meu Impressora 1");
-            i1.setValor(100F);
-            i1.setPeso(5F);
-            i1.setSistemaDeImpressao("tonner");
-            i1.setWifi(Boolean.FALSE);
-            System.out.println();
-            System.out.println("calculo da venda: " + i1.calcularVenda());
-            incluir(i1);
-        } catch (SistemaDeImpressaoInvalido e) {
-            System.out.println("[ERROR - IMPRESSORA] " + e.getMessage());
-        }
+            try {
+                String dir = "/Users/fernandovieira/dev/venda/";
+                String arq = "impressora.txt";
 
-        try {
-            Impressora i2 = new Impressora();
-            i2.setCodigo(2);
-            i2.setNome("meu Impressora 2");
-            i2.setValor(150F);
-            i2.setPeso(6F);
-            i2.setSistemaDeImpressao("tinta");
-            i2.setWifi(Boolean.TRUE);
-            System.out.println("calculo da venda: " + i2.calcularVenda());
-            incluir(i2);
-        } catch (SistemaDeImpressaoInvalido e) {
-            System.out.println("[ERROR - IMPRESSORA] " + e.getMessage());
-        }
+                FileReader fileReader = new FileReader(dir + arq);
+                BufferedReader leitura = new BufferedReader(fileReader);
 
-        try {
-            Impressora i3 = new Impressora();
-            i3.setCodigo(3);
-            i3.setNome("meu Impressora 3");
-            i3.setValor(200F);
-            i3.setPeso(4F);
-            i3.setSistemaDeImpressao("tinta");
-            i3.setWifi(Boolean.TRUE);
-            System.out.println("calculo da venda: " + i3.calcularVenda());
-            incluir(i3);
-        } catch (SistemaDeImpressaoInvalido e) {
-            System.out.println("[ERROR - IMPRESSORA] " + e.getMessage());
-        }
+                String linha;
 
-        try {
-            Impressora i4 = new Impressora();
-            i4.setCodigo(4);
-            i4.setNome("meu Impressora 4");
-            i4.setValor(200F);
-            i4.setPeso(4F);
-//            i4.setSistemaDeImpressao("tinta");
-            i4.setWifi(Boolean.TRUE);
-            System.out.println("calculo da venda: " + i4.calcularVenda());
-            incluir(i4);
-        } catch (SistemaDeImpressaoInvalido e) {
-            System.out.println("[ERROR - IMPRESSORA] " + e.getMessage());
-        }
+                while ((linha = leitura.readLine()) != null) {
 
+                    try {
+                        String[] campos = linha.split(";");
+
+                        Impressora impressora = new Impressora();
+
+                        impressora.setCodigo(Integer.valueOf(campos[0]));
+                        impressora.setNome(campos[1]);
+                        impressora.setValor(Float.valueOf(campos[2]));
+                        impressora.setPeso(Float.valueOf(campos[3]));
+                        impressora.setSistemaDeImpressao(campos[4]);
+                        impressora.setWifi(Boolean.valueOf(campos[5]));
+
+                        System.out.println("calculo da venda: " + impressora.calcularVenda());
+
+                        ImpressoraController.incluir(impressora);
+
+                    } catch (SistemaDeImpressaoInvalido e) {
+                        System.out.println("[ERROR - IMPRESSORA] " + e.getMessage());
+                    }
+                }
+
+                leitura.close();
+                fileReader.close();
+            } catch (FileNotFoundException e) {
+                System.out.println("[ERRO] - arquivo nao existe");
+            } catch (IOException e) {
+                System.out.println("[ERRO] - problemna no fechamento do arquivo");
+            }
+        } finally {
+            System.out.println("terminou");
+        }
     }
+
 }
