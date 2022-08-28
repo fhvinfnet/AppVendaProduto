@@ -1,0 +1,4 @@
+1;meu celular 1;100F;FALSE;4 x 3;8F
+2;meu celular 2;150F;TRUE;5 x 3;16F
+3;meu celular 3;200F;TRUE;4 x 3;32F
+4;meu celular 4;200F;TRUE;4 x 3;4F

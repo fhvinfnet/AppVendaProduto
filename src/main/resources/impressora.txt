@@ -1,0 +1,4 @@
+1;minha Impressora 1;100F;5F;tonner;FALSE
+2;minha Impressora 2;150F;6F;tinta;TRUE
+3;minha Impressora 3;200F;4F;tinta";TRUE
+4;minha Impressora 4;200F;4F;;TRUE

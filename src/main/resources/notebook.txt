@@ -1,0 +1,4 @@
+1;meu Notebook 1;100F;coinfiguracao do meu notebook 1;13F;FALSE;
+2;meu Notebook 2;150F;configuracao do meu notebook 2;15F;TRUE;
+3;meu Notebook 3;200F;configuracao do meu notebook 3;14F;TRUE;
+4;meu Notebook 4;200F;configuracao do meu notebook 3;10F;TRUE;

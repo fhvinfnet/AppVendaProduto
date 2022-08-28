@@ -1,0 +1,4 @@
+12345678901;joao;joao@email.com
+12345678902;maria;maria@email.com
+12345678903;jose;jose@email.com
+;jose;jose@email.com

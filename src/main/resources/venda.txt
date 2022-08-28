@@ -1,0 +1,4 @@
+Venda 1;false;12345678901;joao;joao@email.com
+Venda 2;true;12345678902;maria;maria@email.com
+Venda 3;false;12345678903;jose;jose@email.com  
+Venda 3;false;;jose;jose@email.com 
