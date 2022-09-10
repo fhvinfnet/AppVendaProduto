@@ -1,0 +1,31 @@
+P;AppVendas;Gestao de venda de produtos
+C;Usuario
+A;Nome;String;Nome do usuario
+A;Email;String;Email do usuario
+A;Senha;String;Senha do usuario
+C;Venda
+A;descricao;String;Descricao da venda
+A;data;Data;Data da venda
+A;web;Boolean;Vendido pela web
+A;cliente;Cliente;Cliente que fez a compra
+A;produtos;Lista;Lista de produtos da venda
+C;Cliente
+A;nome;String;Nome do ciente
+A;cpf;String;Cpf do ciente
+A;email;String;Email do clinte
+C;Produto
+A;nome;String;Nome do produto
+A;valor;Float;Preco do produto
+A;codigo;int;Codigo do produto
+C;Celular
+A;cameraFrontal;Boolean;Tem camera frontal
+A;dimensao;String;Medidas do celular
+A;memoria;Float;Quantidade de memoria do celular
+C;Notebook
+A;ssd;Boolean;Possui SSD
+A;configuracao;String;Descricao da configuracao do notebook
+A;polegadas;Float;Numero de poegadas do notebook
+C;Impressora
+A;wifi;Boolean;Tem wifi
+A;sistemaDeImpressao;String;Sistema de impressao
+A;peso;Float;Peso da impressora

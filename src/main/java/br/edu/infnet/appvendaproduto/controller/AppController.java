@@ -1,6 +1,9 @@
 package br.edu.infnet.appvendaproduto.controller;
 
 import br.edu.infnet.appvendaproduto.model.domain.Usuario;
+import br.edu.infnet.appvendaproduto.model.domain.app.Projeto;
+import br.edu.infnet.appvendaproduto.model.teste.AppImpressao;
+import br.edu.infnet.appvendaproduto.service.AppService;
 import br.edu.infnet.appvendaproduto.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,8 +20,13 @@ public class AppController {
     @Autowired
     private UsuarioService usuarioService;
 
+    @Autowired
+    private AppService appService;
+
     @GetMapping(value = "/")
-    public String telaHome() {
+    public String telaHome(Model model) {
+        model.addAttribute("projeto", appService.obterProjeto());
+
         return "home";
     }
 
