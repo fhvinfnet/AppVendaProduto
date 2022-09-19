@@ -15,6 +15,7 @@
 	  <p>Projeto de gestão de vendas de produtos</p>
 
       <h3>Classe: Celular</h3>
+      <h4><a href="/celular">novo</a></h4>
       <table class="table table-striped">
         <thead>
           <tr>

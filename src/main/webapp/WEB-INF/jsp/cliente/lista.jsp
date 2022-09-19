@@ -15,7 +15,8 @@
 	  <p>Projeto de gestão de vendas de produtos</p>
 
 	  <h3>Classe: Cliente</h3>
-	  <table class="table table-striped">
+		<h4><a href="/cliente">novo</a></h4>
+		<table class="table table-striped">
 	    <thead>
 	      <tr>
 	        <th>ID</th>

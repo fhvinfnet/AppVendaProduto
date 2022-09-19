@@ -6,6 +6,8 @@ import br.edu.infnet.appvendaproduto.exceptions.MemoriaDeCelularInvalidaExceptio
 import br.edu.infnet.appvendaproduto.model.domain.Celular;
 import br.edu.infnet.appvendaproduto.model.domain.Cliente;
 import br.edu.infnet.appvendaproduto.model.teste.AppImpressao;
+import br.edu.infnet.appvendaproduto.service.CelularService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -15,10 +17,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import static br.edu.infnet.appvendaproduto.controller.ClienteController.incluir;
-
 @Component
 public class CelularTest implements ApplicationRunner {
+
+    @Autowired
+    CelularService celularService;
 
     @Override
     public void run(ApplicationArguments args) {
@@ -50,7 +53,7 @@ public class CelularTest implements ApplicationRunner {
 
                         System.out.println("calculo da venda: " + celular.calcularVenda());
 
-                        CelularController.incluir(celular);
+                        celularService.incluir(celular);
 
                     } catch (MemoriaDeCelularInvalidaException e) {
                         System.out.println("[ERROR - CELULAR] " + e.getMessage());

@@ -7,6 +7,8 @@ import br.edu.infnet.appvendaproduto.exceptions.SistemaDeImpressaoInvalido;
 import br.edu.infnet.appvendaproduto.model.domain.Celular;
 import br.edu.infnet.appvendaproduto.model.domain.Impressora;
 import br.edu.infnet.appvendaproduto.model.teste.AppImpressao;
+import br.edu.infnet.appvendaproduto.service.ImpressoraService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -16,10 +18,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import static br.edu.infnet.appvendaproduto.controller.ImpressoraController.incluir;
-
 @Component
 public class ImpressoraTest implements ApplicationRunner {
+
+    @Autowired
+    ImpressoraService impressoraService;
 
     @Override
     public void run(ApplicationArguments args) {
@@ -51,7 +54,7 @@ public class ImpressoraTest implements ApplicationRunner {
 
                         System.out.println("calculo da venda: " + impressora.calcularVenda());
 
-                        ImpressoraController.incluir(impressora);
+                        impressoraService.incluir(impressora);
 
                     } catch (SistemaDeImpressaoInvalido e) {
                         System.out.println("[ERROR - IMPRESSORA] " + e.getMessage());

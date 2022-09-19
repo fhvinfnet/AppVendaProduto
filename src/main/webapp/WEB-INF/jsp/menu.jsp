@@ -25,7 +25,7 @@
 		<a class="nav-link" href="/produto/lista">Produto</a>
 	  </li>
 	  <li class="nav-item">
-		<a class="nav-link" href="#/cliente/lista">Cliente</a>
+		<a class="nav-link" href="/cliente/lista">Cliente</a>
 	  </li>
 	  <li class="nav-item">
 		<a class="nav-link" href="/venda/lista">Venda</a>

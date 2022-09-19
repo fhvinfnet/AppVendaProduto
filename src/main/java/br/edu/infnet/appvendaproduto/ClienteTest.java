@@ -7,7 +7,9 @@ import br.edu.infnet.appvendaproduto.exceptions.VendaSemProdutoException;
 import br.edu.infnet.appvendaproduto.model.domain.Cliente;
 import br.edu.infnet.appvendaproduto.model.domain.Venda;
 import br.edu.infnet.appvendaproduto.model.teste.AppImpressao;
+import br.edu.infnet.appvendaproduto.service.SolicitanteService;
 import jdk.swing.interop.SwingInterOpUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -19,10 +21,11 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-import static br.edu.infnet.appvendaproduto.controller.ClienteController.incluir;
-
 @Component
 public class ClienteTest implements ApplicationRunner {
+
+    @Autowired
+    SolicitanteService solicitanteService;
 
     @Override
     public void run(ApplicationArguments args) {
@@ -46,7 +49,7 @@ public class ClienteTest implements ApplicationRunner {
 
                         Cliente cliente1 = new Cliente(campos[0], campos[1], campos[2]);
 
-                        incluir(cliente1);
+                        solicitanteService.incluir(cliente1);
 
                     } catch (CpfInvalidoException exception) {
                         System.out.println("[ERROR] - VENDA " + exception.getMessage());
