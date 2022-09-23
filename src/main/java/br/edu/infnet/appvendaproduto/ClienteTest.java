@@ -2,6 +2,7 @@ package br.edu.infnet.appvendaproduto;
 
 import br.edu.infnet.appvendaproduto.exceptions.CpfInvalidoException;
 import br.edu.infnet.appvendaproduto.model.domain.Cliente;
+import br.edu.infnet.appvendaproduto.model.domain.Usuario;
 import br.edu.infnet.appvendaproduto.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -21,6 +22,11 @@ public class ClienteTest implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
+        Usuario usuario = new Usuario();
+        usuario.setId(1);
+        usuario.setNome("admin");
+        usuario.setEmail("admin@admin.com");
+        usuario.setSenha("123");
 
         System.out.println("###### Clientes");
 
@@ -40,6 +46,8 @@ public class ClienteTest implements ApplicationRunner {
                         String[] campos = linha.split(";");
 
                         Cliente cliente1 = new Cliente(campos[0], campos[1], campos[2]);
+
+                        cliente1.setUsuario(usuario);
 
                         clienteService.incluir(cliente1);
 

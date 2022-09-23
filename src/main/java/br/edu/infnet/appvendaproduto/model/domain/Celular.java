@@ -2,6 +2,11 @@ package br.edu.infnet.appvendaproduto.model.domain;
 
 import br.edu.infnet.appvendaproduto.exceptions.MemoriaDeCelularInvalidaException;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TCelular")
 public class Celular extends Produto {
     private boolean cameraFrontal;
     private String dimensao;

@@ -16,6 +16,10 @@ public class Cliente implements IPrinter {
     private String cpf;
     private String email;
 
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
+
     public Cliente() {
     }
 
@@ -75,5 +79,13 @@ public class Cliente implements IPrinter {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

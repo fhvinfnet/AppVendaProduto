@@ -5,10 +5,16 @@ import br.edu.infnet.appvendaproduto.exceptions.PolegadaNotebookInvalidaExceptio
 import br.edu.infnet.appvendaproduto.exceptions.SistemaDeImpressaoInvalido;
 import br.edu.infnet.appvendaproduto.interfaces.IPrinter;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "TProduto")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Produto implements IPrinter {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     private float valor;

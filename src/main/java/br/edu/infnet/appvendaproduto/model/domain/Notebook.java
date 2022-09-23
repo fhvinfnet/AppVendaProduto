@@ -2,6 +2,11 @@ package br.edu.infnet.appvendaproduto.model.domain;
 
 import br.edu.infnet.appvendaproduto.exceptions.PolegadaNotebookInvalidaException;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TNotebook")
 public class Notebook extends Produto {
     private boolean ssd;
     private String configuracao;

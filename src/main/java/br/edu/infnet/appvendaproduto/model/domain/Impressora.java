@@ -2,6 +2,11 @@ package br.edu.infnet.appvendaproduto.model.domain;
 
 import br.edu.infnet.appvendaproduto.exceptions.SistemaDeImpressaoInvalido;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TImpressora")
 public class Impressora extends Produto {
     private boolean wifi;
     private String sistemaDeImpressao;
