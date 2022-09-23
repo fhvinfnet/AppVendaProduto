@@ -4,7 +4,8 @@ import br.edu.infnet.appvendaproduto.exceptions.ClienteNuloException;
 import br.edu.infnet.appvendaproduto.exceptions.CpfInvalidoException;
 import br.edu.infnet.appvendaproduto.exceptions.VendaSemProdutoException;
 import br.edu.infnet.appvendaproduto.model.domain.*;
-import br.edu.infnet.appvendaproduto.model.teste.AppImpressao;
+import br.edu.infnet.appvendaproduto.service.VendaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -14,53 +15,21 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import static br.edu.infnet.appvendaproduto.controller.VendaController.incluir;
 
 @Component
 @Order(1)
 public class VendaTest implements ApplicationRunner {
 
+    @Autowired
+    private VendaService vendaService;
+
+    private Venda vendaCorrente;
+
     @Override
     public void run(ApplicationArguments args) {
 
         System.out.println("###### Venda");
-
-        Celular c1 = new Celular();
-        c1.setCodigo(1);
-        c1.setNome("meu celular 1");
-        c1.setValor(100F);
-        c1.setCameraFrontal(Boolean.FALSE);
-        c1.setDimensao("4 x 3");
-        c1.setMemoria(2.3F);
-
-        Celular c2 = new Celular();
-        c2.setCodigo(2);
-        c2.setNome("meu celular 2");
-        c2.setValor(150F);
-        c2.setCameraFrontal(Boolean.TRUE);
-        c2.setDimensao("4 x 3");
-        c2.setMemoria(8F);
-
-        Impressora i1 = new Impressora();
-        i1.setCodigo(3);
-        i1.setNome("minha Impressora 3");
-        i1.setValor(100F);
-        i1.setPeso(5F);
-        i1.setSistemaDeImpressao("tonner");
-        i1.setWifi(Boolean.FALSE);
-
-        Notebook n1 = new Notebook();
-        n1.setCodigo(4);
-        n1.setNome("meu Notebook 4");
-        n1.setValor(100F);
-        n1.setConfiguracao("coinfiguracao do meu notebook 4");
-        n1.setPolegadas(13F);
-        n1.setSsd(Boolean.FALSE);
 
         try {
             try {
@@ -74,18 +43,65 @@ public class VendaTest implements ApplicationRunner {
 
                 while ((linha = leitura.readLine()) != null) {
 
-                    try {
-                        String[] campos = linha.split(";");
+                    String[] campos = linha.split(";");
 
-                        Cliente cliente1 = new Cliente(campos[2], campos[3], campos[4]);
+                    switch (campos[0].toUpperCase()) {
+                        case "V":
+                            try {
+                                if (vendaCorrente != null && vendaCorrente.getProdutos().size() > 0) {
+                                    vendaService.incluir(vendaCorrente);
+                                }
 
-                        Venda v1 = new Venda(cliente1, new HashSet<>(Set.of(c1, c2, i1)));
-                        v1.setDescricao(campos[0]);
-                        v1.setWeb(Boolean.valueOf(campos[1]));
+                                Cliente cliente = new Cliente(campos[3], campos[4], campos[5]);
 
-                        incluir(v1);
-                    } catch (CpfInvalidoException | ClienteNuloException | VendaSemProdutoException exception) {
-                        System.out.println("[ERROR] - VENDA " + exception.getMessage());
+                                Venda venda = new Venda(cliente, new HashSet<>());
+
+                                venda.setDescricao(campos[1]);
+                                venda.setWeb(Boolean.parseBoolean(campos[2]));
+
+                                this.vendaCorrente = venda;
+                            } catch (CpfInvalidoException | ClienteNuloException | VendaSemProdutoException exception) {
+                                System.out.println("[ERROR] - VENDA " + exception.getMessage());
+                            }
+                            break;
+
+                        case "C":
+                            Celular celular = new Celular();
+
+                            celular.setCodigo(Integer.parseInt(campos[1]));
+                            celular.setNome(campos[2]);
+                            celular.setValor(Float.parseFloat(campos[3]));
+                            celular.setCameraFrontal(Boolean.parseBoolean(campos[4]));
+                            celular.setDimensao(campos[5]);
+                            celular.setMemoria(Float.parseFloat(campos[6]));
+                            vendaCorrente.getProdutos().add(celular);
+                            break;
+
+                        case "N":
+                            Notebook notebook = new Notebook();
+                            notebook.setCodigo(Integer.parseInt(campos[1]));
+                            notebook.setNome(campos[2]);
+                            notebook.setValor(Float.parseFloat(campos[3]));
+                            notebook.setConfiguracao(campos[4]);
+                            notebook.setPolegadas(Float.parseFloat(campos[5]));
+                            notebook.setSsd(Boolean.parseBoolean(campos[6]));
+                            vendaCorrente.getProdutos().add(notebook);
+                            this.vendaCorrente = vendaCorrente;
+                            break;
+
+                        case "I":
+                            Impressora impressora = new Impressora();
+                            impressora.setCodigo(Integer.parseInt(campos[1]));
+                            impressora.setNome(campos[2]);
+                            impressora.setValor(Float.parseFloat(campos[3]));
+                            impressora.setPeso(Float.parseFloat(campos[4]));
+                            impressora.setSistemaDeImpressao(campos[5]);
+                            impressora.setWifi(Boolean.parseBoolean(campos[6]));
+                            vendaCorrente.getProdutos().add(impressora);
+                            break;
+
+                        default:
+                            break;
                     }
                 }
 

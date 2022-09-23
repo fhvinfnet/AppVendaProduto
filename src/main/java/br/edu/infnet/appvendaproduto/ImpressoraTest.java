@@ -31,7 +31,7 @@ public class ImpressoraTest implements ApplicationRunner {
         try {
             try {
                 String dir = "/Users/fernandovieira/dev/venda/";
-                String arq = "impressora.txt";
+                String arq = "produto.txt";
 
                 FileReader fileReader = new FileReader(dir + arq);
                 BufferedReader leitura = new BufferedReader(fileReader);
@@ -43,19 +43,20 @@ public class ImpressoraTest implements ApplicationRunner {
                     try {
                         String[] campos = linha.split(";");
 
-                        Impressora impressora = new Impressora();
+                        if ("I".equalsIgnoreCase(campos[0])) {
+                            Impressora impressora = new Impressora();
 
-                        impressora.setCodigo(Integer.valueOf(campos[0]));
-                        impressora.setNome(campos[1]);
-                        impressora.setValor(Float.valueOf(campos[2]));
-                        impressora.setPeso(Float.valueOf(campos[3]));
-                        impressora.setSistemaDeImpressao(campos[4]);
-                        impressora.setWifi(Boolean.valueOf(campos[5]));
+                            impressora.setCodigo(Integer.valueOf(campos[1]));
+                            impressora.setNome(campos[2]);
+                            impressora.setValor(Float.valueOf(campos[3]));
+                            impressora.setPeso(Float.valueOf(campos[4]));
+                            impressora.setSistemaDeImpressao(campos[5]);
+                            impressora.setWifi(Boolean.valueOf(campos[6]));
 
-                        System.out.println("calculo da venda: " + impressora.calcularVenda());
+                            System.out.println("calculo da venda: " + impressora.calcularVenda());
 
-                        impressoraService.incluir(impressora);
-
+                            impressoraService.incluir(impressora);
+                        }
                     } catch (SistemaDeImpressaoInvalido e) {
                         System.out.println("[ERROR - IMPRESSORA] " + e.getMessage());
                     }

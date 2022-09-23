@@ -30,7 +30,7 @@ public class CelularTest implements ApplicationRunner {
         try {
             try {
                 String dir = "/Users/fernandovieira/dev/venda/";
-                String arq = "celular.txt";
+                String arq = "produto.txt";
 
                 FileReader fileReader = new FileReader(dir + arq);
                 BufferedReader leitura = new BufferedReader(fileReader);
@@ -42,19 +42,20 @@ public class CelularTest implements ApplicationRunner {
                     try {
                         String[] campos = linha.split(";");
 
-                        Celular celular = new Celular();
+                        if ("C".equalsIgnoreCase(campos[0])) {
+                            Celular celular = new Celular();
 
-                        celular.setCodigo(Integer. valueOf(campos[0]));
-                        celular.setNome(campos[1]);
-                        celular.setValor(Float.valueOf(campos[2]));
-                        celular.setCameraFrontal(Boolean.valueOf(campos[3]));
-                        celular.setDimensao(campos[4]);
-                        celular.setMemoria(Float.valueOf(campos[5]));
+                            celular.setCodigo(Integer.valueOf(campos[1]));
+                            celular.setNome(campos[2]);
+                            celular.setValor(Float.valueOf(campos[3]));
+                            celular.setCameraFrontal(Boolean.valueOf(campos[4]));
+                            celular.setDimensao(campos[5]);
+                            celular.setMemoria(Float.valueOf(campos[6]));
 
-                        System.out.println("calculo da venda: " + celular.calcularVenda());
+                            System.out.println("calculo da venda: " + celular.calcularVenda());
 
-                        celularService.incluir(celular);
-
+                            celularService.incluir(celular);
+                        }
                     } catch (MemoriaDeCelularInvalidaException e) {
                         System.out.println("[ERROR - CELULAR] " + e.getMessage());
                     }

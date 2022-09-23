@@ -23,9 +23,9 @@ public class Venda implements IPrinter {
             throw new ClienteNuloException("cliente deve ser informado");
         }
 
-        if (produtos == null || produtos.size() < 1) {
-            throw new VendaSemProdutoException("uma venda deve ter ao menos um produto");
-        }
+//        if (produtos == null || produtos.size() < 1) {
+//            throw new VendaSemProdutoException("uma venda deve ter ao menos um produto");
+//        }
 
         this.cliente = cliente;
         this.data = LocalDateTime.now();

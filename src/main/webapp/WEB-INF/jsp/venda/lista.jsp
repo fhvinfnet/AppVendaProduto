@@ -14,8 +14,10 @@
 	  <h2>AppVendaProduto</h2>
 	  <p>Projeto de gestão de vendas de produtos</p>
 
-	  <h3>Classe: Venda</h3>
-	  <table class="table table-striped">
+		<h3>Classe: Venda</h3>
+		<h4><a href="/venda/cadastro">novo</a></h4>
+
+		<table class="table table-striped">
 	    <thead>
 	      <tr>
 	        <th>ID</th>

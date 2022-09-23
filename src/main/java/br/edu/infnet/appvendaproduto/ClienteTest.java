@@ -1,14 +1,8 @@
 package br.edu.infnet.appvendaproduto;
 
-import br.edu.infnet.appvendaproduto.controller.VendaController;
-import br.edu.infnet.appvendaproduto.exceptions.ClienteNuloException;
 import br.edu.infnet.appvendaproduto.exceptions.CpfInvalidoException;
-import br.edu.infnet.appvendaproduto.exceptions.VendaSemProdutoException;
 import br.edu.infnet.appvendaproduto.model.domain.Cliente;
-import br.edu.infnet.appvendaproduto.model.domain.Venda;
-import br.edu.infnet.appvendaproduto.model.teste.AppImpressao;
-import br.edu.infnet.appvendaproduto.service.SolicitanteService;
-import jdk.swing.interop.SwingInterOpUtils;
+import br.edu.infnet.appvendaproduto.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -18,14 +12,12 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
 
 @Component
 public class ClienteTest implements ApplicationRunner {
 
     @Autowired
-    SolicitanteService solicitanteService;
+    ClienteService clienteService;
 
     @Override
     public void run(ApplicationArguments args) {
@@ -49,7 +41,7 @@ public class ClienteTest implements ApplicationRunner {
 
                         Cliente cliente1 = new Cliente(campos[0], campos[1], campos[2]);
 
-                        solicitanteService.incluir(cliente1);
+                        clienteService.incluir(cliente1);
 
                     } catch (CpfInvalidoException exception) {
                         System.out.println("[ERROR] - VENDA " + exception.getMessage());

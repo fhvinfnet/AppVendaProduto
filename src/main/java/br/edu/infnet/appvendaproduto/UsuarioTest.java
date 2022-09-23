@@ -1,12 +1,6 @@
 package br.edu.infnet.appvendaproduto;
 
-import br.edu.infnet.appvendaproduto.controller.UsuarioController;
-import br.edu.infnet.appvendaproduto.exceptions.ClienteNuloException;
-import br.edu.infnet.appvendaproduto.exceptions.CpfInvalidoException;
-import br.edu.infnet.appvendaproduto.exceptions.VendaSemProdutoException;
-import br.edu.infnet.appvendaproduto.model.domain.Cliente;
 import br.edu.infnet.appvendaproduto.model.domain.Usuario;
-import br.edu.infnet.appvendaproduto.model.domain.Venda;
 import br.edu.infnet.appvendaproduto.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -17,10 +11,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
-
-import static br.edu.infnet.appvendaproduto.controller.VendaController.incluir;
 
 @Component
 public class UsuarioTest implements ApplicationRunner {

@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class SolicitanteService {
+public class ClienteService {
 
     private static Map<Integer, Cliente> mapaCliente = new HashMap<>();
 
