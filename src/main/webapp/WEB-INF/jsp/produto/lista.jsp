@@ -26,13 +26,13 @@
 	      </tr>
 	    </thead>
 	    <tbody>
-            <c:forEach var="c" items="${listagem}">
+            <c:forEach var="p" items="${listagem}">
               <tr>
-                <td>${c.id}</td>
-                <td>${c.nome}</td>
-                <td>${c.valor}</td>
-                <td>${c.codigo}</td>
-                <td><a href="/produto/${c.id}/excluir">excluir</a></td>
+                <td>${p.id}</td>
+                <td>${p.nome}</td>
+                <td>${p.valor}</td>
+                <td>${p.codigo}</td>
+                <td><a href="/produto/${p.id}/excluir">excluir</a></td>
               </tr>
             </c:forEach>
 	    </tbody>

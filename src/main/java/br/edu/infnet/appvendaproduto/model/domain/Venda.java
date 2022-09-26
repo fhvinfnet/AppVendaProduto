@@ -4,18 +4,35 @@ import br.edu.infnet.appvendaproduto.exceptions.ClienteNuloException;
 import br.edu.infnet.appvendaproduto.exceptions.VendaSemProdutoException;
 import br.edu.infnet.appvendaproduto.interfaces.IPrinter;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
+@Table(name = "TVenda")
 public class Venda implements IPrinter {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String descricao;
     private LocalDateTime data;
     private boolean web;
+
+    @OneToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "idCliente")
     private Cliente cliente;
+
+    @ManyToMany(cascade = CascadeType.DETACH)
     private Set<Produto> produtos = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
+
+    public Venda() {
+    }
 
     public Venda(Cliente cliente, Set<Produto> produtos) throws ClienteNuloException, VendaSemProdutoException {
 
@@ -35,6 +52,12 @@ public class Venda implements IPrinter {
     @Override
     public String toString() {
         return descricao + ";" + data + ";" + web + ";" + cliente + ";" + produtos.size();
+    }
+
+    @Override
+    public void impressao() {
+        System.out.println("#venda");
+        System.out.println(this);
     }
 
     public Integer getId() {
@@ -77,11 +100,11 @@ public class Venda implements IPrinter {
         return cliente;
     }
 
-    @Override
-    public void impressao() {
-        System.out.println("#venda");
-        System.out.println(this);
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

@@ -6,6 +6,7 @@ import br.edu.infnet.appvendaproduto.model.domain.Notebook;
 import br.edu.infnet.appvendaproduto.model.teste.AppImpressao;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import static br.edu.infnet.appvendaproduto.controller.NotebookController.incluir;
 
 @Component
+@Order(4)
 public class NotebookTest implements ApplicationRunner {
 
     @Override

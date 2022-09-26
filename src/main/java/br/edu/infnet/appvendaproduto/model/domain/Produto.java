@@ -6,6 +6,7 @@ import br.edu.infnet.appvendaproduto.exceptions.SistemaDeImpressaoInvalido;
 import br.edu.infnet.appvendaproduto.interfaces.IPrinter;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -19,6 +20,16 @@ public abstract class Produto implements IPrinter {
     private String nome;
     private float valor;
     private int codigo;
+
+    @ManyToMany(mappedBy = "produtos")
+    private List<Venda> vendas;
+
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
+
+    public Produto() {
+    }
 
     public abstract float calcularVenda() throws MemoriaDeCelularInvalidaException, SistemaDeImpressaoInvalido,
             PolegadaNotebookInvalidaException;
@@ -58,6 +69,14 @@ public abstract class Produto implements IPrinter {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @Override

@@ -5,11 +5,13 @@ import br.edu.infnet.appvendaproduto.exceptions.CpfInvalidoException;
 import br.edu.infnet.appvendaproduto.exceptions.MemoriaDeCelularInvalidaException;
 import br.edu.infnet.appvendaproduto.model.domain.Celular;
 import br.edu.infnet.appvendaproduto.model.domain.Cliente;
+import br.edu.infnet.appvendaproduto.model.domain.Usuario;
 import br.edu.infnet.appvendaproduto.model.teste.AppImpressao;
 import br.edu.infnet.appvendaproduto.service.CelularService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -18,6 +20,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 @Component
+@Order(3)
 public class CelularTest implements ApplicationRunner {
 
     @Autowired
@@ -25,6 +28,10 @@ public class CelularTest implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
+
+        Usuario usuario = new Usuario();
+        usuario.setId(1);
+
         System.out.println("###### Celular");
 
         try {
@@ -51,6 +58,7 @@ public class CelularTest implements ApplicationRunner {
                             celular.setCameraFrontal(Boolean.valueOf(campos[4]));
                             celular.setDimensao(campos[5]);
                             celular.setMemoria(Float.valueOf(campos[6]));
+                            celular.setUsuario(usuario);
 
                             System.out.println("calculo da venda: " + celular.calcularVenda());
 

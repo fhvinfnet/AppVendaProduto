@@ -1,6 +1,7 @@
 package br.edu.infnet.appvendaproduto.service;
 
 import br.edu.infnet.appvendaproduto.model.domain.Celular;
+import br.edu.infnet.appvendaproduto.model.domain.Usuario;
 import br.edu.infnet.appvendaproduto.model.teste.AppImpressao;
 import br.edu.infnet.appvendaproduto.repository.CelularRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,10 @@ public class CelularService {
 
     public Collection<Celular> obterLista() {
         return (Collection<Celular>) celularRepository.findAll();
+    }
+
+    public Collection<Celular> obterLista(Usuario usuario) {
+        return (Collection<Celular>) celularRepository.findAll(usuario.getId());
     }
 
     public void excluir(Integer id) {

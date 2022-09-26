@@ -1,31 +1,35 @@
 package br.edu.infnet.appvendaproduto.service;
 
+import br.edu.infnet.appvendaproduto.model.domain.Usuario;
 import br.edu.infnet.appvendaproduto.model.domain.Venda;
 import br.edu.infnet.appvendaproduto.model.teste.AppImpressao;
+import br.edu.infnet.appvendaproduto.repository.VendaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class VendaService {
 
-    private static Map<Integer, Venda> mapaVenda = new HashMap<>();
-
-    private static Integer id = 1;
+    @Autowired
+    VendaRepository vendaRepository;
 
     public Collection<Venda> obterLista() {
-        return mapaVenda.values();
+        return (Collection<Venda>) vendaRepository.findAll();
+    }
+
+    public Collection<Venda> obterLista(Usuario usuario) {
+        return (Collection<Venda>) vendaRepository.findAll(usuario.getId());
     }
 
     public void excluir(Integer id) {
-        mapaVenda.remove(id);
+        vendaRepository.deleteById(id);
     }
 
     public void incluir(Venda venda) {
-        venda.setId(id++);
-        mapaVenda.put(venda.getId(), venda);
+        vendaRepository.save(venda);
+
         AppImpressao.relatorio(venda, "inclusao de veda: " + venda.getDescricao());
     }
 
