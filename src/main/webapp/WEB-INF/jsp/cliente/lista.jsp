@@ -11,10 +11,14 @@
     <c:import url="/WEB-INF/jsp/menu.jsp" />
 
     <div class="container mt-3">
-	  <h2>AppVendaProduto</h2>
-	  <p>Projeto de gestão de vendas de produtos</p>
+	  	<h2>AppVendaProduto</h2>
+	  	<p>Projeto de gestão de vendas de produtos</p>
 
-	  <h3>Classe: Cliente</h3>
+		<div class="alert ${tipo}">
+			<strong>Info!</strong> Indicates a neutral informative change or action.
+		</div>
+
+	  	<h3>Classe: Cliente</h3>
 		<h4><a href="/cliente">novo</a></h4>
 		<table class="table table-striped">
 	    <thead>

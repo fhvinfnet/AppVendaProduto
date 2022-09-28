@@ -1,6 +1,7 @@
 package br.edu.infnet.appvendaproduto.controller;
 
 import br.edu.infnet.appvendaproduto.model.domain.Usuario;
+import br.edu.infnet.appvendaproduto.model.domain.Venda;
 import br.edu.infnet.appvendaproduto.service.ProdutoService;
 import br.edu.infnet.appvendaproduto.service.ClienteService;
 import br.edu.infnet.appvendaproduto.service.VendaService;
@@ -33,14 +34,17 @@ public class VendaController {
     }
 
     @GetMapping(value = "/venda/lista")
-    public String telaHome(Model model) {
-        model.addAttribute("listagem", vendaService.obterLista());
+    public String telaHome(Model model, @SessionAttribute("user") Usuario usuario) {
+        model.addAttribute("listagem", vendaService.obterLista(usuario));
 
         return "venda/lista";
     }
 
     @PostMapping("/venda/incluir")
-    public String exclusao() {
+    public String exclusao(Venda venda, @SessionAttribute("user") Usuario usuario) {
+        venda.setUsuario(usuario);
+
+        vendaService.incluir(venda);
 
         return "redirect:/venda/lista";
     }

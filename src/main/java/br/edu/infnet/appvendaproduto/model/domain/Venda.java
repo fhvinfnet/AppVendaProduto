@@ -32,9 +32,12 @@ public class Venda implements IPrinter {
     private Usuario usuario;
 
     public Venda() {
+        this.data = LocalDateTime.now();
+        this.web = true;
     }
 
     public Venda(Cliente cliente, Set<Produto> produtos) throws ClienteNuloException, VendaSemProdutoException {
+        this();
 
         if (cliente == null) {
             throw new ClienteNuloException("cliente deve ser informado");
@@ -45,7 +48,6 @@ public class Venda implements IPrinter {
 //        }
 
         this.cliente = cliente;
-        this.data = LocalDateTime.now();
         this.produtos = produtos;
     }
 

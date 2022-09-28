@@ -8,6 +8,7 @@
 	<title>AppVendaProduto</title>
 </head>
 <body>
+	<c:set var="ativaBotao" value="" />
     <c:import url="/WEB-INF/jsp/menu.jsp" />
 
 	<div class="container mt-3">
@@ -19,24 +20,36 @@
 			</div>
 
 			<div class="mb-3">
-				<labe>Cliente:</labe>
-				<select class="form-control" id="sel1">
-					<c:forEach var="c" items="${clientes}">
-						<option>${c.nome}</option>
-					</c:forEach>
-				</select>
+				<c:if test="${not empty clientes}">
+					<labe>Cliente:</labe>
+					<select name="cliente" class="form-control" id="sel1">
+						<c:forEach var="c" items="${clientes}">
+							<option name="${c.id}">${c.nome}</option>
+						</c:forEach>
+					</select>
+				</c:if>
+				<c:if test="${empty clientes}">
+					<labe>Sem clientes cadastrados:</labe>
+					<c:set var="ativaBotao" value="disabled" />
+				</c:if>
 			</div>
 
 			<div class="mb-3">
-				<labe>Produtos:</labe>
-				<c:forEach var="p" items="${produtos}">
-					<div class="checkbox">
-						<label><input type="checkbox" value="">${p.nome}</label>
-					</div>
-				</c:forEach>
+				<c:if test="${not empty produtos}">
+					<labe>Produtos:</labe>
+					<c:forEach var="p" items="${produtos}">
+						<div class="checkbox">
+							<label><input type="checkbox" name="vendas" value="${p.nome}">${p.nome}</label>
+						</div>
+					</c:forEach>
+				</c:if>
+				<c:if test="${empty produtos}">
+					<labe>Sem produtos cadastrados</labe>
+					<c:set var="ativaBotao" value="disabled" />
+				</c:if>
 			</div>
 
-			<button type="cadastrar" class="btn btn-primary">Submit</button>
+			<button ${ativaBotao} type="cadastrar" class="btn btn-primary">Submit</button>
 		</form>
 	</div>
 </body>
