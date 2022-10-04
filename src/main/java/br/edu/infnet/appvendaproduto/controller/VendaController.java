@@ -25,6 +25,9 @@ public class VendaController {
     @Autowired
     ProdutoService produtoService;
 
+    private String mensagem;
+    private String tipo;
+
     @GetMapping(value = "/venda/cadastro")
     public String telaCadastro(Model model, @SessionAttribute("user") Usuario usuario) {
         model.addAttribute("clientes", clienteService.obterLista(usuario));
@@ -36,6 +39,8 @@ public class VendaController {
     @GetMapping(value = "/venda/lista")
     public String telaHome(Model model, @SessionAttribute("user") Usuario usuario) {
         model.addAttribute("listagem", vendaService.obterLista(usuario));
+        model.addAttribute("mensagem", mensagem);
+        model.addAttribute("tipo", tipo);
 
         return "venda/lista";
     }
@@ -50,7 +55,15 @@ public class VendaController {
     }
     @GetMapping("/venda/{id}/excluir")
     public String exclusao(@PathVariable Integer id) {
-        vendaService.excluir(id);
+        try {
+            vendaService.excluir(id);
+
+            mensagem = "exclusao realizada com sucesso!";
+            tipo = "alert-success";
+        } catch (Exception e) {
+            mensagem = "impossivel realizar exclusao!";
+            tipo = "alert-danger";
+        }
 
         return "redirect:/venda/lista";
     }

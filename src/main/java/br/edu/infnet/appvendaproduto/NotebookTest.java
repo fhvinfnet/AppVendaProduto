@@ -3,7 +3,10 @@ package br.edu.infnet.appvendaproduto;
 import br.edu.infnet.appvendaproduto.exceptions.MemoriaDeCelularInvalidaException;
 import br.edu.infnet.appvendaproduto.exceptions.PolegadaNotebookInvalidaException;
 import br.edu.infnet.appvendaproduto.model.domain.Notebook;
+import br.edu.infnet.appvendaproduto.model.domain.Usuario;
 import br.edu.infnet.appvendaproduto.model.teste.AppImpressao;
+import br.edu.infnet.appvendaproduto.service.NotebookService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -14,14 +17,17 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import static br.edu.infnet.appvendaproduto.controller.NotebookController.incluir;
-
 @Component
 @Order(4)
 public class NotebookTest implements ApplicationRunner {
 
+    @Autowired
+    private NotebookService notebookService;
+
     @Override
     public void run(ApplicationArguments args) {
+        Usuario usuario = new Usuario();
+        usuario.setId(1);
 
         System.out.println("###### Notebook");
 
@@ -42,6 +48,7 @@ public class NotebookTest implements ApplicationRunner {
 
                         if ("N".equalsIgnoreCase(campos[0])) {
                             Notebook n1 = new Notebook();
+                            n1.setUsuario(usuario);
                             n1.setCodigo(Integer.valueOf(campos[1]));
                             n1.setNome(campos[2]);
                             n1.setValor(Float.valueOf(campos[3]));
@@ -51,7 +58,7 @@ public class NotebookTest implements ApplicationRunner {
 
                             System.out.println("calculo da venda: " + n1.calcularVenda());
 
-                            incluir(n1);
+                            notebookService.incluir(n1);
                         }
 
                     } catch (PolegadaNotebookInvalidaException e) {

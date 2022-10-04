@@ -23,6 +23,9 @@ public class ImpressoraController {
     @Autowired
     ImpressoraService impressoraService;
 
+    private String mensagem;
+    private String tipo;
+
     @GetMapping(value = "/impressora")
     public String telaCadastro() {
         return "impressora/cadastro";
@@ -31,13 +34,23 @@ public class ImpressoraController {
     @GetMapping(value = "/impressora/lista")
     public String telaHome(Model model, @SessionAttribute("user") Usuario usuario) {
         model.addAttribute("listagem", impressoraService.obterLista(usuario));
+        model.addAttribute("mensagem", mensagem);
+        model.addAttribute("tipo", tipo);
 
         return "impressora/lista";
     }
 
     @GetMapping("/impressora/{id}/excluir")
     public String exclusao(@PathVariable Integer id) {
-        impressoraService.excluir(id);
+        try {
+            impressoraService.excluir(id);
+
+            mensagem = "exclusao realizada com sucesso!";
+            tipo = "alert-success";
+        } catch (Exception e) {
+            mensagem = "impossivel realizar exclusao!";
+            tipo = "alert-danger";
+        }
 
         return "redirect:/impressora/lista";
     }

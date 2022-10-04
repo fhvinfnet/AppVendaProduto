@@ -6,6 +6,7 @@ import br.edu.infnet.appvendaproduto.exceptions.MemoriaDeCelularInvalidaExceptio
 import br.edu.infnet.appvendaproduto.exceptions.SistemaDeImpressaoInvalido;
 import br.edu.infnet.appvendaproduto.model.domain.Celular;
 import br.edu.infnet.appvendaproduto.model.domain.Impressora;
+import br.edu.infnet.appvendaproduto.model.domain.Usuario;
 import br.edu.infnet.appvendaproduto.model.teste.AppImpressao;
 import br.edu.infnet.appvendaproduto.service.ImpressoraService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,9 @@ public class ImpressoraTest implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
+        Usuario usuario = new Usuario();
+        usuario.setId(1);
+
         System.out.println("###### Impressora");
 
         try {
@@ -47,7 +51,7 @@ public class ImpressoraTest implements ApplicationRunner {
 
                         if ("I".equalsIgnoreCase(campos[0])) {
                             Impressora impressora = new Impressora();
-
+                            impressora.setUsuario(usuario);
                             impressora.setCodigo(Integer.valueOf(campos[1]));
                             impressora.setNome(campos[2]);
                             impressora.setValor(Float.valueOf(campos[3]));

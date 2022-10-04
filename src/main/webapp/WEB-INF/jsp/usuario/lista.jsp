@@ -14,6 +14,10 @@
 	  <h2>AppVendaProduto</h2>
 	  <p>Projeto de gestão de vendas de produtos</p>
 
+        <div class="alert ${tipo}">
+            <strong>Info!</strong> ${mensagem}
+        </div>
+
       <h3>Usuarios</h3>
       <table class="table table-striped">
         <thead>

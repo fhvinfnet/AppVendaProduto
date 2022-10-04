@@ -21,26 +21,40 @@ public class CelularController {
     @Autowired
     CelularService celularService;
 
+    private String mensagem;
+    private String tipo;
+
     @GetMapping(value = "/celular")
     public String telaCadastro() {
         return "celular/cadastro";
     }
 
     @GetMapping(value = "/celular/lista")
-    public String telaHome(Model model, @SessionAttribute("user") Usuario usuario) {
+    public String listar(Model model, @SessionAttribute("user") Usuario usuario) {
         model.addAttribute("listagem", celularService.obterLista(usuario));
+        model.addAttribute("mensagem", mensagem);
+        model.addAttribute("tipo", tipo);
+
         return "celular/lista";
     }
 
     @GetMapping("/celular/{id}/excluir")
-    public String exclusao(@PathVariable Integer id) {
-        celularService.excluir(id);
+    public String excluir(@PathVariable Integer id) {
+        try {
+            celularService.excluir(id);
+
+            mensagem = "exclusao realizada com sucesso!";
+            tipo = "alert-success";
+        } catch (Exception e) {
+            mensagem = "impossivel realizar exclusao!";
+            tipo = "alert-danger";
+        }
 
         return "redirect:/celular/lista";
     }
 
     @PostMapping("/celular/incluir")
-    public String inclusao(Celular celular, @SessionAttribute("user") Usuario usuario) {
+    public String incluir(Celular celular, @SessionAttribute("user") Usuario usuario) {
         celular.setUsuario(usuario);
 
         celularService.incluir(celular);

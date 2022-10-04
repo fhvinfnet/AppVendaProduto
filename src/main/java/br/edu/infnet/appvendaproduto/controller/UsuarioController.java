@@ -21,9 +21,14 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
+    private String mensagem;
+    private String tipo;
+
     @GetMapping(value = "/usuario/lista")
     public String telaHome(Model model) {
         model.addAttribute("listagem", usuarioService.obterLista());
+        model.addAttribute("mensagem", mensagem);
+        model.addAttribute("tipo", tipo);
 
         return "usuario/lista";
     }
@@ -42,7 +47,15 @@ public class UsuarioController {
 
     @GetMapping(value = "/usuario/{email}/excluir")
     public String excluir(@PathVariable String email) {
-        usuarioService.excluir(email);
+        try {
+            usuarioService.excluir(email);
+
+            mensagem = "exclusao realizada com sucesso!";
+            tipo = "alert-success";
+        } catch (Exception e) {
+            mensagem = "impossivel realizar exclusao!";
+            tipo = "alert-danger";
+        }
 
         return "redirect:/usuario/lista";
     }

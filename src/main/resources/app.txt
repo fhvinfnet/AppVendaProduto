@@ -1,4 +1,4 @@
-P;AppVendas;Gestao de venda de produtos
+P;AppVendas;Gestao de venda de produtos FOOBAR
 C;Usuario
 A;Nome;String;Nome do usuario
 A;Email;String;Email do usuario

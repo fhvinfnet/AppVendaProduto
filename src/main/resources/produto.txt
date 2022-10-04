@@ -1,0 +1,12 @@
+I;111;minha Impressora 1;100F;5F;tonner;FALSE
+I;222;minha Impressora 2;150F;6F;tinta;TRUE
+I;333;minha Impressora 3;200F;4F;tinta";TRUE
+I;444;minha Impressora 4;200F;4F;;TRUE
+N;555;meu Notebook 1;50F;coinfiguracao do meu notebook 1;13F;FALSE;
+N;666;meu Notebook 2;150F;configuracao do meu notebook 2;15F;TRUE;
+N;777;meu Notebook 3;200F;configuracao do meu notebook 3;14F;TRUE;
+N;888;meu Notebook 4;200F;configuracao do meu notebook 3;10F;TRUE;
+C;999;meu celular 1;100F;FALSE;4 x 3;8F
+C;100;meu celular 2;150F;TRUE;5 x 3;16F
+C;101;meu celular 3;200F;TRUE;4 x 3;32F
+C;102;meu celular 4;200F;TRUE;4 x 3;4F

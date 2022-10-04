@@ -19,16 +19,29 @@ public class ProdutoController {
     @Autowired
     ProdutoService produtoService;
 
+    private String mensagem;
+    private String tipo;
+
     @GetMapping(value = "/produto/lista")
     public String telaLista(Model model, @SessionAttribute("user")Usuario usuario) {
         model.addAttribute("listagem", produtoService.obterLista(usuario));
+        model.addAttribute("mensagem", mensagem);
+        model.addAttribute("tipo", tipo);
 
         return "produto/lista";
     }
 
     @GetMapping("/produto/{id}/excluir")
     public String exclusao(@PathVariable Integer id) {
-        produtoService.excluir(id);
+        try {
+            produtoService.excluir(id);
+
+            mensagem = "exclusao realizada com sucesso!";
+            tipo = "alert-success";
+        } catch (Exception e) {
+            mensagem = "impossivel realizar exclusao!";
+            tipo = "alert-danger";
+        }
 
         return "redirect:/produto/lista";
     }

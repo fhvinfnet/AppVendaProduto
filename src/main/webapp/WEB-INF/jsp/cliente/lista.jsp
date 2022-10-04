@@ -15,7 +15,7 @@
 	  	<p>Projeto de gestão de vendas de produtos</p>
 
 		<div class="alert ${tipo}">
-			<strong>Info!</strong> Indicates a neutral informative change or action.
+			<strong>Info!</strong> ${mensagem}
 		</div>
 
 	  	<h3>Classe: Cliente</h3>

@@ -4,8 +4,10 @@ import br.edu.infnet.appvendaproduto.exceptions.ClienteNuloException;
 import br.edu.infnet.appvendaproduto.exceptions.CpfInvalidoException;
 import br.edu.infnet.appvendaproduto.exceptions.VendaSemProdutoException;
 import br.edu.infnet.appvendaproduto.model.domain.*;
+import br.edu.infnet.appvendaproduto.repository.NotebookRepository;
 import br.edu.infnet.appvendaproduto.service.CelularService;
 import br.edu.infnet.appvendaproduto.service.ImpressoraService;
+import br.edu.infnet.appvendaproduto.service.NotebookService;
 import br.edu.infnet.appvendaproduto.service.VendaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -27,6 +29,15 @@ public class VendaTest implements ApplicationRunner {
     @Autowired
     private VendaService vendaService;
 
+    @Autowired
+    private CelularService celularService;
+
+    @Autowired
+    private ImpressoraService impressoraService;
+
+    @Autowired
+    private NotebookService notebookService;
+
     private Venda vendaCorrente;
 
     @Override
@@ -40,14 +51,13 @@ public class VendaTest implements ApplicationRunner {
 
             Set<Produto> produtos = new HashSet<>();
 
-            Celular celular = new Celular();
-            celular.setId(1);
-
-            Impressora impressora = new Impressora();
-            impressora.setId(1);
+            Celular celular = celularService.obterLista(usuario).stream().findAny().get();
+            Impressora impressora = impressoraService.obterLista(usuario).stream().findAny().get();
+            Notebook notebook = notebookService.obterLista(usuario).stream().findAny().get();
 
             produtos.add(celular);
             produtos.add(impressora);
+            produtos.add(notebook);
 
             Cliente cliente = new Cliente();
             cliente.setId(1);
